@@ -321,10 +321,10 @@ License: https://themeforest.net/licenses/standard
 				transition: 'fade',
 				transitionDuration: 1000,
 				slides: [
-					{ src: 'demo/images/image-15.jpg' },
-					{ src: 'demo/images/image-16.jpg' },
-					{ src: 'demo/images/image-10.jpg' },
-					{ src: 'demo/images/image-14.jpg' }
+					{ src: '/html/demo/images/background_1.jpg' },
+					{ src: '/html/demo/images/background_2.jpg' },
+					{ src: '/html/demo/images/background_3.jpg' },
+					{ src: '/html/demo/images/background_4.jpg' }
 				]
 			});
 		}
@@ -338,10 +338,10 @@ License: https://themeforest.net/licenses/standard
 				transition: 'zoomOut',
 				transitionDuration: 4000,
 				slides: [
-					{ src: 'demo/images/image-7.jpg' },
-					{ src: 'demo/images/image-16.jpg' },
-					{ src: 'demo/images/image-17.jpg' },
-					{ src: 'demo/images/image-15.jpg' }
+					{ src: '/html/demo/images/background_1.jpg' },
+					{ src: '/html/demo/images/background_2.jpg' },
+					{ src: '/html/demo/images/background_3.jpg' },
+					{ src: '/html/demo/images/background_4.jpg' }
 				]
 			});
 		}
@@ -351,9 +351,9 @@ License: https://themeforest.net/licenses/standard
 
 			var kenburnsDisplayBackdrops = false;
 			var kenburnsBackgrounds = [
-				{ src: 'demo/images/image-1.jpg', valign: 'center' },
-				{ src: 'demo/images/image-14.jpg', valign: 'top' },
-				{ src: 'demo/images/image-17.jpg', valign: 'center' }
+				{ src: '/html/demo/images/background_1.jpg', valign: 'center' },
+				{ src: '/html/demo/images/background_2.jpg', valign: 'top' },
+				{ src: '/html/demo/images/background_3.jpg', valign: 'center' }
 			];
 
 			$body.vegas({
