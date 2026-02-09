@@ -1,37 +1,35 @@
-﻿<section id="about">
+﻿@model List<ResumeProject.Entities.About>
+
+<section id="about">
 	<div class="container">
 		<div class="section-title h2 text-center mb-8">
 			<h2 class="mb-0">Hakkımda</h2>
 			<span class="title-letter">H</span>
 		</div>
 		<div class="row">
-			<div class="col-md-6 col-lg-4 d-none d-lg-block">
-				<img class="img-fluid w-100 rounded" src="/html/demo/images/pp.jpg" alt="">
-			</div>
-			<div class="col-lg-8">
-				<h3>Berdan Aksoy</h3>
-				<p class="lead">Full Stack Developer</p>
-				<p class="mb-5">Yazılım geliştirme alanında kendini geliştiren, .NET ve veritabanı odaklı projeler üzerinde çalışan bir yazılım geliştiricisiyim.</p>
-				<div class="row mb-8">
-					<div class="col-md-6 mb-5 mb-md-0">
-						<h4 class="mb-4">Eğitim</h4>
-						<p class="h5">MA Online Marketing</p>
-						<p>New York University, 2000 - 2003</p>
-						<p class="h5">BA Business & Marketing</p>
-						<p>Silver Oak College, 1998 - 2000</p>
-					</div>
 
-					<div class="col-md-6">
-						<h4 class="mb-4">Deneyimlerim</h4>
-						<p class="h5">Best Product Launch</p>
-						<p>FGA Marketing Awards, 2015</p>
-						<p class="h5">Highly Commended</p>
-						<p>Women in Business, 2010</p>
-					</div>
+			@foreach (var item in Model)
+			{
+				<div class="col-md-6 col-lg-4 d-none d-lg-block">
+					<img class="img-fluid w-100 rounded" src="@item.ImageURL" alt="">
 				</div>
-				<a href="#" class="btn btn-primary">Download CV</a>
-				<a href="#contact" class="btn btn-light scrollto">Send Message</a>
-			</div>
+				<div class="col-lg-8">
+					<h3>@item.Fullname</h3>
+					<p class="lead">@item.Title</p>
+					<p class="mb-5">@item.Description</p>
+
+					<div class="row mb-8">
+
+						@await Component.InvokeAsync("_DefaultEducationComponentPartial")
+
+						@await Component.InvokeAsync("_DefaultHighlightComponentPartial")
+
+					</div>
+					<a href="#" class="btn btn-primary">Download CV</a>
+					<a href="#contact" class="btn btn-light scrollto">Send Message</a>
+				</div>
+			}
+
 		</div>
 	</div>
 </section>

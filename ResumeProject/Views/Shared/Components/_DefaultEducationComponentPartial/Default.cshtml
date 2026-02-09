@@ -1,0 +1,14 @@
+﻿@model List<ResumeProject.Entities.Education>
+
+@{
+    Layout = null;
+}
+
+<div class="col-md-6 mb-5 mb-md-0">
+    <h4 class="mb-4">Eğitim</h4>
+    @foreach (var item in Model)
+    {
+        <p class="h5">@item.EducationTitle</p>
+        <p>@item.EducationProvider, @item.EducationDate</p>
+    }
+</div>

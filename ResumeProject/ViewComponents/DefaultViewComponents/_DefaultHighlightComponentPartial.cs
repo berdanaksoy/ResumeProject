@@ -3,20 +3,20 @@ using ResumeProject.Context;
 
 namespace ResumeProject.ViewComponents.DefaultViewComponents
 {
-    public class _DefaultAboutComponentPartial:ViewComponent
+    public class _DefaultHighlightComponentPartial : ViewComponent
     {
         private readonly ResumeContext _context;
 
-        public _DefaultAboutComponentPartial(ResumeContext context)
+        public _DefaultHighlightComponentPartial(ResumeContext context)
         {
             _context = context;
         }
 
         public IViewComponentResult Invoke()
         {
-            var values = _context.Abouts.ToList();
+            var highlights = _context.Highlights.ToList();
 
-            return View(values);
+            return View(highlights);
         }
     }
 }

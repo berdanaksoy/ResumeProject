@@ -1,0 +1,14 @@
+﻿@model List<ResumeProject.Entities.Highlight>
+
+@{
+    Layout = null;
+}
+
+<div class="col-md-6">
+    <h4 class="mb-4">Öne Çıkanlar</h4>
+    @foreach (var item in Model)
+    {
+        <p class="h5">@item.HighlightTitle</p>
+        <p>@item.HighlightDescription</p>
+    }
+</div>

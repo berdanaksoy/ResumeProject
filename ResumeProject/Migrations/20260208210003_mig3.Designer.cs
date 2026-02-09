@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ResumeProject.Context;
 
@@ -11,9 +12,11 @@ using ResumeProject.Context;
 namespace ResumeProject.Migrations
 {
     [DbContext(typeof(ResumeContext))]
-    partial class ResumeContextModelSnapshot : ModelSnapshot
+    [Migration("20260208210003_mig3")]
+    partial class mig3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,6 +34,39 @@ namespace ResumeProject.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AboutId"));
 
                     b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EducationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EducationDate2")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EducationDate3")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EducationProvider")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EducationProvider2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EducationProvider3")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EducationTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EducationTitle2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EducationTitle3")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -97,31 +133,6 @@ namespace ResumeProject.Migrations
                     b.ToTable("Contacts");
                 });
 
-            modelBuilder.Entity("ResumeProject.Entities.Education", b =>
-                {
-                    b.Property<int>("EducationId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EducationId"));
-
-                    b.Property<string>("EducationDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EducationProvider")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EducationTitle")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("EducationId");
-
-                    b.ToTable("Educations");
-                });
-
             modelBuilder.Entity("ResumeProject.Entities.Experience", b =>
                 {
                     b.Property<int>("ExperienceId")
@@ -145,27 +156,6 @@ namespace ResumeProject.Migrations
                     b.HasKey("ExperienceId");
 
                     b.ToTable("Experiences");
-                });
-
-            modelBuilder.Entity("ResumeProject.Entities.Highlight", b =>
-                {
-                    b.Property<int>("HighlightId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HighlightId"));
-
-                    b.Property<string>("HighlightDescription")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HighlightTitle")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("HighlightId");
-
-                    b.ToTable("Highlights");
                 });
 
             modelBuilder.Entity("ResumeProject.Entities.Message", b =>

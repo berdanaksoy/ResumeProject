@@ -1616,15 +1616,15 @@ body.site-header-open .site-header {
   color: rgba(0, 0, 0, 0.85);
 }
 
-.site-header.site-header-dark .site-nav a:not(.btn).active,
-.site-header.site-header-light .site-nav a:not(.btn).active {
-  color: #377dff;
-}
+    .site-header.site-header-dark .site-nav a:not(.btn).active,
+    .site-header.site-header-light .site-nav a:not(.btn).active {
+        color: #00C896;
+    }
 
-.site-header.site-header-dark .site-nav a:not(.btn).active:before,
-.site-header.site-header-light .site-nav a:not(.btn).active:before {
-  border-left-color: #377dff;
-}
+        .site-header.site-header-dark .site-nav a:not(.btn).active:before,
+        .site-header.site-header-light .site-nav a:not(.btn).active:before {
+            border-left-color: #00C896;
+        }
 
 /* Nav divider */
 .nav-divider {
