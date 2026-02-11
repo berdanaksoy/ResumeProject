@@ -16,6 +16,8 @@ namespace ResumeProject.ViewComponents.DefaultViewComponents
         {
             var values = _context.Services.ToList();
 
+            ViewBag.ServiceDescription = _context.ServiceDescription.Select(x=>x.Description).FirstOrDefault();
+
             return View(values);
         }
     }

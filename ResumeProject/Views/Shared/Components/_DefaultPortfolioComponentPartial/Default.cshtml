@@ -1,28 +1,26 @@
 ﻿@model List<ResumeProject.Entities.Portfolio>
 
 <section id="portfolio">
-	
-	@await Component.InvokeAsync("_DefaultCategoriesComponentPartial")
-
-	<div class="container">
-		<div class="portfolio-container isotope-container row my-n2 mx-sm-n2">
-			@foreach (var item in Model)
-			{
-				<div class="isotope-item col-sm-6 col-lg-4 py-2 px-sm-2 web">
-					<div class="portfolio-item details-inside">
-						<a href="portfolio-single-1.html">
-							<div class="item-media">
-								<img src="@item.ImageURL" alt="">
-							</div>
-							<div class="item-overlay bg-dark"></div>
-							<div class="item-details">
-								<h4 class="h5">@item.Title</h4>
-								<p class="font-italic">Kategori Adı</p>
-							</div>
-						</a>
-					</div>
-				</div>
-			}	
-		</div><!-- .portfolio-container end -->
-	</div>
+    @await Component.InvokeAsync("_DefaultCategoriesComponentPartial")
+    <div class="container">
+        <div class="portfolio-container isotope-container row my-n2 mx-sm-n2">
+            @foreach (var item in Model)
+            {
+                <div class="isotope-item col-sm-6 col-lg-4 py-2 px-sm-2 category-@item.CategoryId">
+                    <div class="portfolio-item details-inside">
+                        <a href="portfolio-single-1.html">
+                            <div class="item-media">
+                                <img src="@item.ImageURL" alt="">
+                            </div>
+                            <div class="item-overlay bg-dark"></div>
+                            <div class="item-details">
+                                <h4 class="h5">@item.Title</h4>
+                                <p class="font-italic">@(item.Category?.CategoryName ?? "Kategori Yok")</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </section>
