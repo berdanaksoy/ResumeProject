@@ -1,0 +1,46 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="lg:col-span-1 bg-white dark:bg-surface-dark p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+    <div class="flex items-center justify-between mb-6">
+        <h2 class="text-lg font-bold flex items-center">
+            <span class="material-symbols-outlined mr-2 text-primary">pie_chart</span>
+            Proje Dağılımı
+        </h2>
+        <a class="text-xs font-bold text-primary hover:underline" href="#">Düzenle</a>
+    </div>
+    <div class="flex flex-col items-center">
+        <div class="relative w-40 h-40 rounded-full border-8 border-slate-100 dark:border-slate-800 flex items-center justify-center">
+            <div class="absolute inset-0 rounded-full" style="background: conic-gradient(#0d9488 0% 45%, #0ea5e9 45% 75%, #6366f1 75% 100%);"></div>
+            <div class="absolute inset-2 bg-white dark:bg-surface-dark rounded-full flex flex-col items-center justify-center">
+                <span class="text-xl font-bold">21</span>
+                <span class="text-[10px] text-slate-500 uppercase">Toplam</span>
+            </div>
+        </div>
+        <div class="mt-6 w-full space-y-2">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <span class="w-3 h-3 rounded-full bg-primary"></span>
+                    <span class="text-xs font-medium">Web</span>
+                </div>
+                <span class="text-xs font-bold text-slate-500">10 Proje</span>
+            </div>
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <span class="w-3 h-3 rounded-full bg-blue-500"></span>
+                    <span class="text-xs font-medium">Mobil</span>
+                </div>
+                <span class="text-xs font-bold text-slate-500">6 Proje</span>
+            </div>
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <span class="w-3 h-3 rounded-full bg-indigo-500"></span>
+                    <span class="text-xs font-medium">Backend</span>
+                </div>
+                <span class="text-xs font-bold text-slate-500">5 Proje</span>
+            </div>
+        </div>
+    </div>
+</div>

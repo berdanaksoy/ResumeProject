@@ -16,6 +16,7 @@ namespace ResumeProject.ViewComponents.DefaultViewComponents
         {
             var values = _context.Portfolios
                 .Include(p => p.Category)
+                .Where(p=>p.IsActive==true)
                 .ToList();
 
             return View(values);

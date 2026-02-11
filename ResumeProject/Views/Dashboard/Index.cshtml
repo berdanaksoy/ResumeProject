@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<style>
+    .dashboard-container {
+        max-width: 1600px;
+        margin: 40px auto 0 auto;
+        padding: 0 20px;
+    }
+</style>
+
+<div class="flex h-screen overflow-hidden">
+
+    <main class="flex-1 overflow-y-auto">
+
+        <div class="dashboard-container space-y-8">
+
+            @await Component.InvokeAsync("AdminDashboardCards")
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                @await Component.InvokeAsync("AdminDashboardSkills")
+
+                @await Component.InvokeAsync("AdminDashboardMessageTraffic")
+
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                @await Component.InvokeAsync("AdminDashboardProjectDistribution")
+
+                @await Component.InvokeAsync("AdminDashboardTimeline")
+
+            </div>
+
+            @await Component.InvokeAsync("AdminDashboardRecentMessages")
+
+            <br /><br />
+        </div>
+    </main>
+</div>

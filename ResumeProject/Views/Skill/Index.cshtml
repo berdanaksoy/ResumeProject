@@ -1,0 +1,172 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<style>
+    .page-scroll {
+        height: calc(100vh - 64px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-bottom: 32px;
+    }
+</style>
+
+<div class="page-scroll">
+    <div class="max-w-[1600px] mx-auto p-6 md:p-10">
+        <!-- Header Section -->
+        <header class="mb-10 flex items-center justify-between">
+            <div>
+                <h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-3">
+                    <span class="material-symbols-outlined text-primary text-4xl">psychology</span>
+                    Yetenek Yönetim Paneli
+                </h1>
+                <p class="text-slate-500 dark:text-[#9db2b9] mt-2">Portfolyonuzdaki yetenekleri ve seviyelerini buradan düzenleyebilirsiniz.</p>
+            </div>
+            <div class="hidden md:block">
+                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
+                    <span class="material-symbols-outlined text-primary">admin_panel_settings</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="space-y-8">
+            <!-- Top Section: Skill Description -->
+            <section class="bg-white dark:bg-[#111618] rounded-xl shadow-sm border border-slate-200 dark:border-[#283539] overflow-hidden">
+                <div class="p-6 border-b border-slate-200 dark:border-[#283539] flex items-center justify-between bg-slate-50/50 dark:bg-[#1c2427]">
+                    <h2 class="text-xl font-semibold flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">description</span>
+                        Yetenek Açıklaması
+                    </h2>
+                </div>
+                <div class="p-6 space-y-4">
+                    <div class="flex flex-col space-y-2">
+                        <label class="text-sm font-medium text-slate-500 dark:text-[#9db2b9]" for="skill-desc">Genel Açıklama Metni</label>
+                        <textarea class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-[#9db2b9] transition-all p-3" id="skill-desc" placeholder="Yeteneklerinizi, uzmanlık alanlarınızı ve öğrenme sürecinizi anlatan kısa bir yazı girin..." rows="4"></textarea>
+                    </div>
+                    <div class="flex justify-end pt-2">
+                        <button class="bg-primary hover:bg-primary/90 text-white px-8 py-2.5 rounded-lg font-semibold flex items-center gap-2 transition-colors shadow-lg shadow-primary/20">
+                            <span class="material-symbols-outlined text-[20px]">save</span>
+                            Kaydet
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bottom Section: Skill List -->
+            <section class="bg-white dark:bg-[#111618] rounded-xl shadow-sm border border-slate-200 dark:border-[#283539] overflow-hidden">
+                <div class="p-6 border-b border-slate-200 dark:border-[#283539] flex items-center justify-between bg-slate-50/50 dark:bg-[#1c2427]">
+                    <h2 class="text-xl font-semibold flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">format_list_bulleted</span>
+                        Yetenek Listesi
+                    </h2>
+                    <button class="text-primary hover:bg-primary/10 border border-primary/30 px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 transition-all">
+                        <span class="material-symbols-outlined text-[18px]">add</span>
+                        Yeni Yetenek Ekle
+                    </button>
+                </div>
+                <div class="p-6">
+                    <div class="space-y-4 mb-8">
+                        <!-- Skill Header Labels -->
+                        <div class="grid grid-cols-12 gap-4 px-2 hidden md:grid">
+                            <div class="col-span-7 lg:col-span-8">
+                                <label class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-[#9db2b9]">Yetenek Adı</label>
+                            </div>
+                            <div class="col-span-4 lg:col-span-3">
+                                <label class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-[#9db2b9]">Yetenek Seviyesi</label>
+                            </div>
+                            <div class="col-span-1"></div>
+                        </div>
+
+                        <!-- Skill Entry Row 1 -->
+                        <div class="grid grid-cols-12 gap-4 items-center bg-slate-50 dark:bg-[#1c2427] p-4 rounded-xl border border-slate-100 dark:border-[#283539] group">
+                            <div class="col-span-12 md:col-span-7 lg:col-span-8">
+                                <input class="w-full bg-white dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2" placeholder="Örn: React.js" type="text" value="React.js" />
+                            </div>
+                            <div class="col-span-12 md:col-span-4 lg:col-span-3 flex items-center gap-3">
+                                <div class="relative w-full">
+                                    <input class="w-full bg-white dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 pr-8 px-3 py-2" max="100" min="0" type="number" value="95" />
+                                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-[#9db2b9] font-medium">%</span>
+                                </div>
+                            </div>
+                            <div class="col-span-12 md:col-span-1 flex justify-end">
+                                <button class="p-2 text-slate-400 dark:text-[#9db2b9] hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all" title="Sil">
+                                    <span class="material-symbols-outlined">delete</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Skill Entry Row 2 -->
+                        <div class="grid grid-cols-12 gap-4 items-center bg-slate-50 dark:bg-[#1c2427] p-4 rounded-xl border border-slate-100 dark:border-[#283539] group">
+                            <div class="col-span-12 md:col-span-7 lg:col-span-8">
+                                <input class="w-full bg-white dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2" placeholder="Örn: Node.js" type="text" value="Node.js" />
+                            </div>
+                            <div class="col-span-12 md:col-span-4 lg:col-span-3 flex items-center gap-3">
+                                <div class="relative w-full">
+                                    <input class="w-full bg-white dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 pr-8 px-3 py-2" max="100" min="0" type="number" value="80" />
+                                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-[#9db2b9] font-medium">%</span>
+                                </div>
+                            </div>
+                            <div class="col-span-12 md:col-span-1 flex justify-end">
+                                <button class="p-2 text-slate-400 dark:text-[#9db2b9] hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all" title="Sil">
+                                    <span class="material-symbols-outlined">delete</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Skill Entry Row 3 -->
+                        <div class="grid grid-cols-12 gap-4 items-center bg-slate-50 dark:bg-[#1c2427] p-4 rounded-xl border border-slate-100 dark:border-[#283539] group">
+                            <div class="col-span-12 md:col-span-7 lg:col-span-8">
+                                <input class="w-full bg-white dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2" placeholder="Örn: Tailwind CSS" type="text" value="Tailwind CSS" />
+                            </div>
+                            <div class="col-span-12 md:col-span-4 lg:col-span-3 flex items-center gap-3">
+                                <div class="relative w-full">
+                                    <input class="w-full bg-white dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 pr-8 px-3 py-2" max="100" min="0" type="number" value="90" />
+                                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-[#9db2b9] font-medium">%</span>
+                                </div>
+                            </div>
+                            <div class="col-span-12 md:col-span-1 flex justify-end">
+                                <button class="p-2 text-slate-400 dark:text-[#9db2b9] hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all" title="Sil">
+                                    <span class="material-symbols-outlined">delete</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Skill Entry Row 4 -->
+                        <div class="grid grid-cols-12 gap-4 items-center bg-slate-50 dark:bg-[#1c2427] p-4 rounded-xl border border-slate-100 dark:border-[#283539] group">
+                            <div class="col-span-12 md:col-span-7 lg:col-span-8">
+                                <input class="w-full bg-white dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2" placeholder="Örn: TypeScript" type="text" value="TypeScript" />
+                            </div>
+                            <div class="col-span-12 md:col-span-4 lg:col-span-3 flex items-center gap-3">
+                                <div class="relative w-full">
+                                    <input class="w-full bg-white dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 pr-8 px-3 py-2" max="100" min="0" type="number" value="85" />
+                                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-[#9db2b9] font-medium">%</span>
+                                </div>
+                            </div>
+                            <div class="col-span-12 md:col-span-1 flex justify-end">
+                                <button class="p-2 text-slate-400 dark:text-[#9db2b9] hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all" title="Sil">
+                                    <span class="material-symbols-outlined">delete</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-slate-200 dark:border-[#283539]">
+                        <button class="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white px-10 py-2.5 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors shadow-lg shadow-primary/20">
+                            <span class="material-symbols-outlined text-[20px]">save</span>
+                            Değişiklikleri Kaydet
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- System Notification Simulator (Static for UI design) -->
+        <div class="fixed bottom-8 right-8 pointer-events-none">
+            <div class="bg-slate-900 dark:bg-primary border border-slate-800 dark:border-primary/30 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-4 opacity-0">
+                <span class="material-symbols-outlined text-green-400 dark:text-white">check_circle</span>
+                <span class="font-medium text-sm">Değişiklikler başarıyla kaydedildi.</span>
+            </div>
+        </div>
+    </div>
+</div>

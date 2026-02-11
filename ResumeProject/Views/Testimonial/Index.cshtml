@@ -1,0 +1,153 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<style>
+    .page-scroll {
+        height: calc(100vh - 64px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-bottom: 32px;
+    }
+</style>
+
+<div class="page-scroll">
+    <div class="max-w-[1600px] mx-auto py-12 px-6 space-y-8">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+                <h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Referanslarım Yönetim Tablosu</h1>
+                <p class="text-slate-600 dark:text-[#9db2b9] mt-1">Müşteri yorumlarını ve referanslarınızı buradan yönetebilir, yeni referanslar ekleyebilirsiniz.</p>
+            </div>
+            <button class="bg-primary/10 text-primary hover:bg-primary hover:text-white border border-primary/30 px-6 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all">
+                <span class="material-symbols-outlined text-[24px]">person_add</span>
+                Yeni Referans Ekle
+            </button>
+        </div>
+
+        <div class="bg-white dark:bg-[#111618] rounded-xl border border-slate-200 dark:border-[#283539] shadow-2xl overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-50/50 dark:bg-[#1c2427] border-b border-slate-200 dark:border-[#283539]">
+                            <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-[#9db2b9] w-[180px]">Ad Soyad</th>
+                            <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-[#9db2b9] w-[150px]">Unvan</th>
+                            <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-[#9db2b9] w-[150px]">Şirket</th>
+                            <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-[#9db2b9]">Yorum</th>
+                            <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-[#9db2b9] w-[200px]">Görsel URL</th>
+                            <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-[#9db2b9] w-[120px] text-center">Onaylandı mı?</th>
+                            <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-[#9db2b9] w-[80px] text-right">İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 dark:divide-[#283539]">
+                        <tr class="hover:bg-slate-50 dark:hover:bg-[#1c2427] transition-colors group">
+                            <td class="px-4 py-4">
+                                <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2 text-sm" type="text" value="Ahmet Yılmaz" />
+                            </td>
+                            <td class="px-4 py-4">
+                                <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2 text-sm" type="text" value="CTO" />
+                            </td>
+                            <td class="px-4 py-4">
+                                <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2 text-sm" type="text" value="Tech Solutions" />
+                            </td>
+                            <td class="px-4 py-4">
+                                <textarea class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2 text-sm resize-none" placeholder="Yorum yazın..." rows="1">Proje sürecindeki profesyonelliği ve teknik bilgisiyle işimize çok değer kattı.</textarea>
+                            </td>
+                            <td class="px-4 py-4">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-slate-400 dark:text-[#9db2b9] text-lg">link</span>
+                                    <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2 text-sm" type="text" value="https://i.pravatar.cc/150?u=ahmet" />
+                                </div>
+                            </td>
+                            <td class="px-4 py-4 text-center">
+                                <div class="flex items-center justify-center gap-2">
+                                    <input checked="" class="w-5 h-5 rounded border-slate-300 dark:border-[#283539] bg-slate-50 dark:bg-[#1d2a33] text-primary focus:ring-offset-white dark:focus:ring-offset-background-dark focus:ring-primary" type="checkbox" />
+                                    <span class="text-[10px] text-slate-500 dark:text-[#9db2b9] font-medium uppercase">Onay</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="p-2 text-slate-400 dark:text-[#9db2b9] hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all" title="Sil">
+                                    <span class="material-symbols-outlined">delete</span>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 dark:hover:bg-[#1c2427] transition-colors group">
+                            <td class="px-4 py-4">
+                                <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2 text-sm" type="text" value="Merve Demir" />
+                            </td>
+                            <td class="px-4 py-4">
+                                <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2 text-sm" type="text" value="Pazarlama Müdürü" />
+                            </td>
+                            <td class="px-4 py-4">
+                                <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2 text-sm" type="text" value="Global Marketing" />
+                            </td>
+                            <td class="px-4 py-4">
+                                <textarea class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2 text-sm resize-none" placeholder="Yorum yazın..." rows="1">İhtiyaçlarımızı çok iyi analiz ederek harika bir tasarım ortaya çıkardı.</textarea>
+                            </td>
+                            <td class="px-4 py-4">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-slate-400 dark:text-[#9db2b9] text-lg">link</span>
+                                    <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2 text-sm" type="text" value="https://i.pravatar.cc/150?u=merve" />
+                                </div>
+                            </td>
+                            <td class="px-4 py-4 text-center">
+                                <div class="flex items-center justify-center gap-2">
+                                    <input checked="" class="w-5 h-5 rounded border-slate-300 dark:border-[#283539] bg-slate-50 dark:bg-[#1d2a33] text-primary focus:ring-offset-white dark:focus:ring-offset-background-dark focus:ring-primary" type="checkbox" />
+                                    <span class="text-[10px] text-slate-500 dark:text-[#9db2b9] font-medium uppercase">Onay</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="p-2 text-slate-400 dark:text-[#9db2b9] hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all" title="Sil">
+                                    <span class="material-symbols-outlined">delete</span>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 dark:hover:bg-[#1c2427] transition-colors group">
+                            <td class="px-4 py-4">
+                                <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2 text-sm" type="text" value="Can Özkan" />
+                            </td>
+                            <td class="px-4 py-4">
+                                <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2 text-sm" type="text" value="Kurucu Ortağı" />
+                            </td>
+                            <td class="px-4 py-4">
+                                <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2 text-sm" type="text" value="Startup Hub" />
+                            </td>
+                            <td class="px-4 py-4">
+                                <textarea class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2 text-sm resize-none" placeholder="Yorum yazın..." rows="1">Beklentilerimizin ötesinde bir performans sergiledi. Tekrar çalışmak isteriz.</textarea>
+                            </td>
+                            <td class="px-4 py-4">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-slate-400 dark:text-[#9db2b9] text-lg">link</span>
+                                    <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2 text-sm" type="text" value="https://i.pravatar.cc/150?u=can" />
+                                </div>
+                            </td>
+                            <td class="px-4 py-4 text-center">
+                                <div class="flex items-center justify-center gap-2">
+                                    <input class="w-5 h-5 rounded border-slate-300 dark:border-[#283539] bg-slate-50 dark:bg-[#1d2a33] text-primary focus:ring-offset-white dark:focus:ring-offset-background-dark focus:ring-primary" type="checkbox" />
+                                    <span class="text-[10px] text-slate-500 dark:text-[#9db2b9] font-medium uppercase">Onay</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="p-2 text-slate-400 dark:text-[#9db2b9] hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all" title="Sil">
+                                    <span class="material-symbols-outlined">delete</span>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="p-6 bg-slate-50/50 dark:bg-[#1c2427] border-t border-slate-200 dark:border-[#283539] flex items-center justify-between gap-4">
+                <p class="text-sm text-slate-600 dark:text-[#9db2b9]">Toplam <span class="text-slate-900 dark:text-slate-100 font-bold">3</span> referans listeleniyor.</p>
+                <div class="flex gap-4">
+                    <button class="px-6 py-2.5 text-slate-600 dark:text-[#9db2b9] hover:text-slate-900 dark:hover:text-white font-medium transition-all">
+                        Vazgeç
+                    </button>
+                    <button class="bg-primary hover:bg-primary/90 text-white px-10 py-2.5 rounded-lg font-bold flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary/20">
+                        <span class="material-symbols-outlined text-[20px]">save</span>
+                        Değişiklikleri Kaydet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
