@@ -14,7 +14,20 @@ namespace ResumeProject.ViewComponents.AdminViewComponents.Dashboard
 
         public IViewComponentResult Invoke()
         {
-            return View();
+            var totalMessages = _context.Messages.Count();
+            var totalUnreadMessages = _context.Messages.Count(m => m.IsRead==false);
+            var totalSkills = _context.Skills.Count();
+            var totalProjects = _context.Portfolios.Count();
+            var totalExperiences = _context.Experiences.Count();
+
+            return View(new
+            {
+                TotalMessages=totalMessages,
+                TotalUnreadMessages=totalUnreadMessages,
+                TotalSkills=totalSkills,
+                TotalProjects=totalProjects,
+                TotalExperiences=totalExperiences
+            });
         }
     }
 }

@@ -14,7 +14,14 @@ namespace ResumeProject.ViewComponents.AdminViewComponents.Dashboard
 
         public IViewComponentResult Invoke()
         {
-            return View();
+            var highestSkill = _context.Skills.OrderByDescending(s => s.SkillLevel).FirstOrDefault();
+            var lowestSkill = _context.Skills.OrderBy(s => s.SkillLevel).FirstOrDefault();
+
+            return View(new
+            {
+                HighestSkill=highestSkill,
+                LowestSkill=lowestSkill
+            });
         }
     }
 }

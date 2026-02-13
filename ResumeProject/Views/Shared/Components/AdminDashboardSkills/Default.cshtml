@@ -1,4 +1,5 @@
-﻿
+﻿@model dynamic
+
 @{
     Layout = null;
 }
@@ -8,14 +9,14 @@
         <div class="relative z-10 h-full flex flex-col justify-between">
             <div>
                 <p class="text-xs font-bold uppercase tracking-widest opacity-80">En Yüksek Yetenek</p>
-                <h4 class="text-2xl font-black mt-2">.NET CORE / C#</h4>
+                <h4 class="text-2xl font-black mt-2">@Model.HighestSkill.SkillName</h4>
             </div>
             <div class="mt-4">
                 <div class="flex justify-between items-center mb-1">
-                    <span class="text-sm font-black">95%</span>
+                    <span class="text-sm font-black">@Model.HighestSkill.SkillLevel%</span>
                 </div>
                 <div class="w-full bg-white/20 rounded-full h-2">
-                    <div class="bg-white h-2 rounded-full" style="width: 95%"></div>
+                    <div class="bg-white h-2 rounded-full" style="width: @Model.HighestSkill.SkillLevel%"></div>
                 </div>
             </div>
         </div>
@@ -25,14 +26,14 @@
         <div class="relative z-10 h-full flex flex-col justify-between">
             <div>
                 <p class="text-xs font-bold uppercase tracking-widest opacity-80">En Düşük Yetenek</p>
-                <h4 class="text-2xl font-black mt-2">Vue.js</h4>
+                <h4 class="text-2xl font-black mt-2">@Model.LowestSkill.SkillName</h4>
             </div>
             <div class="mt-4">
                 <div class="flex justify-between items-center mb-1">
-                    <span class="text-sm font-black">40%</span>
+                    <span class="text-sm font-black">@Model.LowestSkill.SkillLevel%</span>
                 </div>
                 <div class="w-full bg-white/10 rounded-full h-2">
-                    <div class="bg-yellow-400 h-2 rounded-full" style="width: 40%"></div>
+                    <div class="bg-yellow-400 h-2 rounded-full" style="width: @Model.LowestSkill.SkillLevel%"></div>
                 </div>
             </div>
         </div>

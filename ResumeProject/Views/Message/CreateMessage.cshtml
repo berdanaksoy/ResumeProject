@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "CreateMessage";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<style>
+    .page-scroll {
+        height: calc(100vh - 64px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-bottom: 32px;
+    }
+</style>
+
+<div class="page-scroll">
+    <!-- BEGIN: Main Content Wrapper -->
+    <div class="w-full max-w-[1600px] mx-auto flex justify-center py-12 px-6" data-purpose="dashboard-container">
+        <!-- BEGIN: Message Card -->
+        <section class="bg-white dark:bg-[#111618] border border-slate-200 dark:border-[#283539] rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden" data-purpose="message-form-card">
+            <!-- BEGIN: Card Header -->
+            <header class="p-8 border-b border-slate-200 dark:border-[#283539] flex items-center gap-4 relative">
+                <div class="absolute top-6 right-6">
+                    <button class="flex items-center gap-2 px-4 py-2 border border-slate-200 dark:border-[#283539] rounded-lg text-sm font-medium text-slate-600 dark:text-[#9db2b9] hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-[#1c2427] transition-colors group" onclick="window.history.back()" type="button">
+                        <span class="material-symbols-outlined text-lg group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                        <span>Geri Dön</span>
+                    </button>
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-3xl">send</span>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Yeni Mesaj Gönder</h1>
+                    <p class="text-slate-600 dark:text-[#9db2b9] text-sm">Portfolyo ziyaretçilerine veya sistem kullanıcılarına mesaj iletin.</p>
+                </div>
+            </header>
+            <!-- END: Card Header -->
+            <!-- BEGIN: Form Section -->
+            <form action="#" class="p-8 space-y-6" method="POST">
+                <!-- Subject Field -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-slate-600 dark:text-[#9db2b9]" for="subject">Konu</label>
+                    <div class="relative">
+                        <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg py-3 px-4 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none placeholder-slate-400 dark:placeholder-[#9db2b9]" id="subject" name="subject" placeholder="Mesaj başlığını giriniz..." required="" type="text" />
+                    </div>
+                </div>
+
+                <!-- Message Detail Field -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-slate-600 dark:text-[#9db2b9]" for="message">Mesaj Detayı</label>
+                    <textarea class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg py-3 px-4 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none resize-none placeholder-slate-400 dark:placeholder-[#9db2b9]" id="message" name="message" placeholder="Mesaj içeriğini buraya yazınız..." required="" rows="8"></textarea>
+                </div>
+
+                <!-- BEGIN: Action Footer -->
+                <footer class="pt-4 flex items-center justify-between gap-4">
+                    <div class="text-xs text-slate-600 dark:text-[#9db2b9] flex items-center gap-1">
+                        <span class="material-symbols-outlined text-xs">info</span>
+                        Tüm alanların doldurulması zorunludur.
+                    </div>
+                    <button class="group bg-primary hover:bg-primary/90 text-white font-bold py-4 px-8 rounded-xl flex items-center gap-3 transition-all duration-300 transform hover:-translate-y-1 active:scale-95 shadow-lg shadow-primary/20" id="send-button" type="submit">
+                        <span>Gönder</span>
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">alternate_email</span>
+                    </button>
+                </footer>
+                <!-- END: Action Footer -->
+            </form>
+            <!-- END: Form Section -->
+        </section>
+        <!-- END: Message Card -->
+    </div>
+    <!-- END: Main Content Wrapper -->
+</div>

@@ -20,8 +20,14 @@ namespace ResumeProject.Controllers
             return View(values);
         }
 
+        [HttpGet]
+        public IActionResult CreateMessage()
+        {
+            return View();
+        }
+
         [HttpPost]
-        public IActionResult SendMessage(Message message)
+        public IActionResult CreateMessage(Message message)
         {
             try
             {
@@ -46,6 +52,21 @@ namespace ResumeProject.Controllers
 
                 return RedirectToAction("Index", "Default");
             }
+        }
+
+        [HttpGet]
+        public IActionResult MessageDetails()
+        {
+            return View();
+        }
+
+        public IActionResult DeleteMessage(int id)
+        {
+            var message = _context.Messages.Find(id);
+            _context.Messages.Remove(message);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
         }
     }
 }

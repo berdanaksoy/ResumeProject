@@ -1,4 +1,5 @@
-﻿
+﻿@model dynamic
+
 @{
     Layout = null;
 }
@@ -7,50 +8,50 @@
     <div class="bg-white dark:bg-surface-dark p-6 rounded-xl border border-slate-200 dark:border-slate-800 relative group overflow-hidden">
         <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Toplam Mesaj</p>
         <div class="flex items-end justify-between">
-            <h3 class="text-2xl font-bold">128</h3>
+            <h3 class="text-2xl font-bold">@Model.TotalMessages</h3>
             <span class="material-symbols-outlined text-primary opacity-50">forum</span>
         </div>
-        <a class="absolute inset-0 bg-primary/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-sm" href="#">
+        <a class="absolute inset-0 bg-primary/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-sm" href="/Message/Index">
             <span class="material-symbols-outlined mr-2">edit</span> Düzenle
         </a>
     </div>
     <div class="bg-white dark:bg-surface-dark p-6 rounded-xl border border-slate-200 dark:border-slate-800 relative group overflow-hidden">
         <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Okunmamış</p>
         <div class="flex items-end justify-between">
-            <h3 class="text-2xl font-bold text-red-500">12</h3>
+            <h3 class="text-2xl font-bold text-red-500">@Model.TotalUnreadMessages</h3>
             <span class="material-symbols-outlined text-red-500 opacity-50">mark_email_unread</span>
         </div>
-        <a class="absolute inset-0 bg-primary/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-sm" href="#">
+        <a class="absolute inset-0 bg-primary/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-sm" href="/Message/Index">
             <span class="material-symbols-outlined mr-2">edit</span> Düzenle
         </a>
     </div>
     <div class="bg-white dark:bg-surface-dark p-6 rounded-xl border border-slate-200 dark:border-slate-800 relative group overflow-hidden">
         <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Yetenekler</p>
         <div class="flex items-end justify-between">
-            <h3 class="text-2xl font-bold">34</h3>
+            <h3 class="text-2xl font-bold">@Model.TotalSkills</h3>
             <span class="material-symbols-outlined text-primary opacity-50">bolt</span>
         </div>
-        <a class="absolute inset-0 bg-primary/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-sm" href="#">
+        <a class="absolute inset-0 bg-primary/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-sm" href="/Skill/Index">
             <span class="material-symbols-outlined mr-2">edit</span> Düzenle
         </a>
     </div>
     <div class="bg-white dark:bg-surface-dark p-6 rounded-xl border border-slate-200 dark:border-slate-800 relative group overflow-hidden">
         <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Projeler</p>
         <div class="flex items-end justify-between">
-            <h3 class="text-2xl font-bold">21</h3>
+            <h3 class="text-2xl font-bold">@Model.TotalProjects</h3>
             <span class="material-symbols-outlined text-primary opacity-50">layers</span>
         </div>
-        <a class="absolute inset-0 bg-primary/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-sm" href="#">
+        <a class="absolute inset-0 bg-primary/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-sm" href="/Portfolio/Index">
             <span class="material-symbols-outlined mr-2">edit</span> Düzenle
         </a>
     </div>
     <div class="bg-white dark:bg-surface-dark p-6 rounded-xl border border-slate-200 dark:border-slate-800 relative group overflow-hidden">
         <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Deneyimler</p>
         <div class="flex items-end justify-between">
-            <h3 class="text-2xl font-bold">6</h3>
+            <h3 class="text-2xl font-bold">@Model.TotalExperiences</h3>
             <span class="material-symbols-outlined text-primary opacity-50">history_edu</span>
         </div>
-        <a class="absolute inset-0 bg-primary/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-sm" href="#">
+        <a class="absolute inset-0 bg-primary/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-sm" href="/Experience/ExperienceList">
             <span class="material-symbols-outlined mr-2">edit</span> Düzenle
         </a>
     </div>

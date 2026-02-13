@@ -1,4 +1,5 @@
-﻿
+﻿@model List<ResumeProject.Entities.Message>
+
 @{
     Layout = null;
 }
@@ -9,46 +10,24 @@
             <span class="material-symbols-outlined mr-2 text-primary">chat_bubble_outline</span>
             Son Mesajlar
         </h2>
-        <button class="text-xs font-medium text-primary hover:underline">Tümünü Gör</button>
+        <a class ="text-xs font-medium text-primary hover:underline" href="/Message/Index">Tümünü Gör</a>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="bg-white dark:bg-surface-dark p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-colors cursor-pointer group">
-            <div class="flex justify-between items-start mb-2">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center font-bold text-primary">AK</div>
-                    <div>
-                        <h4 class="text-sm font-bold">Ayşe Kaya</h4>
-                        <p class="text-[10px] text-slate-500">2 saat önce</p>
+        @foreach (var item in Model)
+        {
+            <div class="bg-white dark:bg-surface-dark p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-colors cursor-pointer group">
+                <div class="flex justify-between items-start mb-2">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center font-bold text-blue-500"></div>
+                        <div>
+                            <h4 class="text-sm font-bold">@item.Fullname</h4>
+                            <p class="text-[10px] text-slate-500">@item.SendDate</p>
+                        </div>
                     </div>
                 </div>
-                <span class="w-2 h-2 bg-primary rounded-full"></span>
+                <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2">@item.MessageDetail.Substring(0,50) ...</p>
             </div>
-            <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2">Merhaba, portfolyonuzdaki .NET projeleri ilgimi çekti. Freelance bir iş için görüşebilir miyiz?</p>
-        </div>
-        <div class="bg-white dark:bg-surface-dark p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-colors cursor-pointer group">
-            <div class="flex justify-between items-start mb-2">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center font-bold text-blue-500">MC</div>
-                    <div>
-                        <h4 class="text-sm font-bold">Mehmet Can</h4>
-                        <p class="text-[10px] text-slate-500">5 saat önce</p>
-                    </div>
-                </div>
-            </div>
-            <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2">Proje teklifi hakkında detayları e-posta adresinize gönderdim. Dönüşünüzü bekliyorum.</p>
-        </div>
-        <div class="bg-white dark:bg-surface-dark p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-colors cursor-pointer group">
-            <div class="flex justify-between items-start mb-2">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center font-bold text-purple-500">ED</div>
-                    <div>
-                        <h4 class="text-sm font-bold">Elif Demir</h4>
-                        <p class="text-[10px] text-slate-500">Dün</p>
-                    </div>
-                </div>
-            </div>
-            <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2">Blog yazınızdaki API entegrasyonu bölümü çok faydalı olmuş, teşekkürler!</p>
-        </div>
+        }
         <br /><br />
     </div>
 </section>

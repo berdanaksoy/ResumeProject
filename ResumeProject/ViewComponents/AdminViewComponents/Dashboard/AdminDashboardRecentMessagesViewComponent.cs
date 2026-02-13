@@ -14,7 +14,9 @@ namespace ResumeProject.ViewComponents.AdminViewComponents.Dashboard
 
         public IViewComponentResult Invoke()
         {
-            return View();
+            var values= _context.Messages.OrderByDescending(x=>x.SendDate).Take(3).ToList();
+
+            return View(values);
         }
     }
 }
