@@ -6,10 +6,11 @@
 }
 
 <style>
-    .messages-container {
-        max-width: 1600px;
-        margin: 40px auto 0 auto;
-        padding: 0 20px;
+    .page-scroll {
+        height: calc(100vh - 64px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-bottom: 32px;
     }
 
     .table-card::-webkit-scrollbar {
@@ -32,111 +33,108 @@
         }
 </style>
 
-<div class="messages-container space-y-8">
-    <!-- Header Section -->
-    <div class="flex justify-between items-start mb-6">
-        <div class="flex flex-col gap-2">
-            <h1 class="text-4xl font-bold bg-gradient-to-r from-primary to-primary-teal bg-clip-text text-transparent">
-                Mesaj Listesi
-            </h1>
+<div class="page-scroll">
+    <div class="max-w-[1600px] mx-auto py-8 px-6 space-y-8">
+        <!-- Header Section -->
+        <div class="flex justify-between items-start mb-6">
+            <div class="flex flex-col gap-2">
+                <h1 class="text-4xl font-bold bg-gradient-to-r from-primary to-primary-teal bg-clip-text text-transparent">
+                    Mesaj Listesi
+                </h1>
+                <p class="text-slate-600 dark:text-[#9db2b9]">
+                    Mesajlarınızı görüntüleyin ve yanıtlayın.
+                </p>
+            </div>
+        </div>
 
-            <p class="text-slate-500 dark:text-slate-400">
-                Mesajlarınızı görüntüleyin ve yanıtlayın.
-            </p>
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-white dark:bg-[#111618] p-5 rounded-xl border border-slate-200 dark:border-[#283539]">
+                <p class="text-slate-500 dark:text-[#9db2b9] text-xs uppercase">Toplam</p>
+                <p class="text-3xl font-bold text-slate-900 dark:text-white mt-2">@Model.Count()</p>
+            </div>
+            <div class="bg-white dark:bg-[#111618] p-5 rounded-xl border border-slate-200 dark:border-[#283539]">
+                <p class="text-slate-500 dark:text-[#9db2b9] text-xs uppercase">Okunmamış</p>
+                <p class="text-3xl font-bold text-slate-900 dark:text-white mt-2">@Model.Count(m => !m.IsRead)</p>
+            </div>
+            <div class="bg-white dark:bg-[#111618] p-5 rounded-xl border border-slate-200 dark:border-[#283539]">
+                <p class="text-slate-500 dark:text-[#9db2b9] text-xs uppercase">Okunmuş</p>
+                <p class="text-3xl font-bold text-slate-900 dark:text-white mt-2">@Model.Count(m => m.IsRead)</p>
+            </div>
+            <div class="bg-white dark:bg-[#111618] p-5 rounded-xl border border-slate-200 dark:border-[#283539]">
+                <p class="text-slate-500 dark:text-[#9db2b9] text-xs uppercase">Bu Ay</p>
+                <p class="text-3xl font-bold text-slate-900 dark:text-white mt-2">@Model.Count(m => m.SendDate.Month == DateTime.Now.Month)</p>
+            </div>
         </div>
-        <button onclick="window.location.href='@Url.Action("CreateMessage", "Message")'"
-                class="mt-12 px-6 py-3 bg-gradient-to-r from-primary to-primary-teal text-white font-semibold rounded-xl hover:-translate-y-0.5 transition-transform duration-200">
-            ✉️ Yeni Mesaj
-        </button>
-    </div>
 
-    <!-- Stats Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="bg-surface-dark p-5 rounded-xl border border-white/10">
-            <p class="text-gray-400 text-xs uppercase">Toplam</p>
-            <p class="text-3xl font-bold text-white mt-2">@Model.Count()</p>
-        </div>
-        <div class="bg-surface-dark p-5 rounded-xl border border-white/10">
-            <p class="text-gray-400 text-xs uppercase">Okunmamış</p>
-            <p class="text-3xl font-bold text-white mt-2">@Model.Count(m => !m.IsRead)</p>
-        </div>
-        <div class="bg-surface-dark p-5 rounded-xl border border-white/10">
-            <p class="text-gray-400 text-xs uppercase">Okunmuş</p>
-            <p class="text-3xl font-bold text-white mt-2">@Model.Count(m => m.IsRead)</p>
-        </div>
-        <div class="bg-surface-dark p-5 rounded-xl border border-white/10">
-            <p class="text-gray-400 text-xs uppercase">Bu Ay</p>
-            <p class="text-3xl font-bold text-white mt-2">@Model.Count(m => m.SendDate.Month == DateTime.Now.Month)</p>
-        </div>
-    </div>
-
-    <!-- Messages Table -->
-    <div class="table-card bg-surface-dark rounded-2xl border border-white/10 max-h-[600px] overflow-auto">
-        <table class="w-full">
-            <thead class="bg-black/20 sticky top-0 z-10">
-                <tr>
-                    <th class="px-5 py-4 text-left text-xs uppercase text-gray-400 font-semibold">Gönderen</th>
-                    <th class="px-5 py-4 text-left text-xs uppercase text-gray-400 font-semibold">Konu & Mesaj</th>
-                    <th class="px-5 py-4 text-left text-xs uppercase text-gray-400 font-semibold">Durum</th>
-                    <th class="px-5 py-4 text-left text-xs uppercase text-gray-400 font-semibold">Tarih</th>
-                    <th class="px-5 py-4 text-left text-xs uppercase text-gray-400 font-semibold">İşlemler</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var msg in Model.OrderByDescending(m => m.SendDate))
-                {
-                    <tr class="border-b border-white/5 hover:bg-slate-800/50 transition-all duration-200">
-                        <td class="px-5 py-5">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-teal flex items-center justify-center font-bold text-white">
-                                    @msg.Fullname.Substring(0, 1).ToUpper()
-                                </div>
-                                <div>
-                                    <p class="font-semibold text-white">@msg.Fullname</p>
-                                    <p class="text-xs text-gray-400">@msg.EmailAddress</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-5 py-5">
-                            <p class="font-medium text-white mb-1">@msg.Subject</p>
-                            <p class="text-xs text-gray-400">
-                                @(msg.MessageDetail.Length > 50 ? msg.MessageDetail.Substring(0, 50) + " ..." : msg.MessageDetail)
-                            </p>
-                        </td>
-                        <td class="px-5 py-5">
-                            @if (msg.IsRead)
-                            {
-                                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold bg-gray-400/10 text-gray-400 border border-white/5">
-                                    Okundu
-                                </span>
-                            }
-                            else
-                            {
-                                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
-                                    <span class="w-2 h-2 bg-primary rounded-full"></span>
-                                    Okunmadı
-                                </span>
-                            }
-                        </td>
-                        <td class="px-5 py-5">
-                            <p class="text-gray-400 text-sm">@msg.SendDate.ToString("dd MMM yyyy")</p>
-                            <p class="text-gray-400 text-xs">@msg.SendDate.ToString("HH:mm")</p>
-                        </td>
-                        <td class="px-5 py-5">
-                            <div class="flex gap-2">
-                                <button onclick="window.location.href='@Url.Action("MessageDetails", "Message", new { id = msg.MessageId })'"
-                                        class="px-4 py-2 rounded-lg text-sm font-semibold bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-all">
-                                    Görüntüle
-                                </button>
-                                <button onclick="if(confirm('Silmek istediğinizden emin misiniz?')) window.location.href='@Url.Action("DeleteMessage", "Message", new { id = msg.MessageId })'"
-                                        class="px-4 py-2 rounded-lg text-sm font-semibold bg-red-500/10 text-red-500 border border-red-500/20 hover:bg-red-500/20 transition-all">
-                                    Sil
-                                </button>
-                            </div>
-                        </td>
+        <!-- Messages Table -->
+        <div class="table-card bg-white dark:bg-[#111618] rounded-2xl border border-slate-200 dark:border-[#283539] max-h-[600px] overflow-auto">
+            <table class="w-full">
+                <thead class="bg-slate-50 dark:bg-[#1c2427] sticky top-0 z-10">
+                    <tr>
+                        <th class="px-5 py-4 text-left text-xs uppercase text-slate-500 dark:text-[#9db2b9] font-semibold">Gönderen</th>
+                        <th class="px-5 py-4 text-left text-xs uppercase text-slate-500 dark:text-[#9db2b9] font-semibold">Konu & Mesaj</th>
+                        <th class="px-5 py-4 text-left text-xs uppercase text-slate-500 dark:text-[#9db2b9] font-semibold">Durum</th>
+                        <th class="px-5 py-4 text-left text-xs uppercase text-slate-500 dark:text-[#9db2b9] font-semibold">Tarih</th>
+                        <th class="px-5 py-4 text-left text-xs uppercase text-slate-500 dark:text-[#9db2b9] font-semibold">İşlemler</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var msg in Model.OrderByDescending(m => m.SendDate))
+                    {
+                        <tr class="border-b border-slate-200 dark:border-[#283539] hover:bg-slate-50 dark:hover:bg-[#1c2427] transition-all duration-200">
+                            <td class="px-5 py-5">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-teal flex items-center justify-center font-bold text-white">
+                                        @msg.Fullname.Substring(0, 1).ToUpper()
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-slate-900 dark:text-white">@msg.Fullname</p>
+                                        <p class="text-xs text-slate-500 dark:text-[#9db2b9]">@msg.EmailAddress</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-5 py-5">
+                                <p class="font-medium text-slate-900 dark:text-white mb-1">@msg.Subject</p>
+                                <p class="text-xs text-slate-500 dark:text-[#9db2b9]">
+                                    @(msg.MessageDetail.Length > 50 ? msg.MessageDetail.Substring(0, 50) + " ..." : msg.MessageDetail)
+                                </p>
+                            </td>
+                            <td class="px-5 py-5">
+                                @if (msg.IsRead)
+                                {
+                                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-700/30 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                                        Okundu
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+                                        <span class="w-2 h-2 bg-primary rounded-full"></span>
+                                        Okunmadı
+                                    </span>
+                                }
+                            </td>
+                            <td class="px-5 py-5">
+                                <p class="text-slate-600 dark:text-[#9db2b9] text-sm">@msg.SendDate.ToString("dd MMM yyyy")</p>
+                                <p class="text-slate-500 dark:text-[#9db2b9] text-xs">@msg.SendDate.ToString("HH:mm")</p>
+                            </td>
+                            <td class="px-5 py-5">
+                                <div class="flex gap-2">
+                                    <button onclick="window.location.href='@Url.Action("MessageDetails", "Message", new { id = msg.MessageId })'"
+                                            class="px-4 py-2 rounded-lg text-sm font-semibold bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-all">
+                                        Görüntüle
+                                    </button>
+                                    <button onclick="if(confirm('Silmek istediğinizden emin misiniz?')) window.location.href='@Url.Action("DeleteMessage", "Message", new { id = msg.MessageId })'"
+                                            class="px-4 py-2 rounded-lg text-sm font-semibold bg-red-500/10 text-red-500 border border-red-500/20 hover:bg-red-500/20 transition-all">
+                                        Sil
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

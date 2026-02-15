@@ -1,4 +1,5 @@
-﻿
+﻿@model ResumeProject.Entities.Message
+
 @{
     ViewData["Title"] = "MessageDetails";
     Layout = "~/Views/AdminLayout/Index.cshtml";
@@ -19,7 +20,7 @@
         <!-- BEGIN: HeaderSection -->
         <header class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4" data-purpose="page-header">
             <div class="flex items-center gap-4">
-                <a class="inline-flex items-center justify-center p-2 rounded-lg bg-slate-100 dark:bg-[#1c2427] border border-slate-200 dark:border-[#283539] text-primary hover:bg-slate-200 dark:hover:bg-[#283539] transition-colors" href="#" title="Geri Dön">
+                <a class="inline-flex items-center justify-center p-2 rounded-lg bg-slate-100 dark:bg-[#1c2427] border border-slate-200 dark:border-[#283539] text-primary hover:bg-slate-200 dark:hover:bg-[#283539] transition-colors" href="/Message/Index" title="Geri Dön">
                     <svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
                     </svg>
@@ -31,10 +32,7 @@
             </div>
             <!-- Action Buttons -->
             <div class="flex items-center gap-3">
-                <button class="px-5 py-2.5 rounded-lg border border-slate-200 dark:border-[#283539] text-slate-700 dark:text-[#9db2b9] hover:bg-slate-100 dark:hover:bg-[#1c2427] transition-all text-sm font-medium flex items-center gap-2">
-                    <span>Geri Dön</span>
-                </button>
-                <button class="px-5 py-2.5 rounded-lg bg-red-500/10 border border-red-500/20 text-red-500 hover:bg-red-500 hover:text-white transition-all text-sm font-medium flex items-center gap-2">
+                <button class="px-5 py-2.5 rounded-lg bg-red-500/10 border border-red-500/20 text-red-500 hover:bg-red-500 hover:text-white transition-all text-sm font-medium flex items-center gap-2" onclick="if(confirm('Silmek istediğinizden emin misiniz?')) window.location.href='@Url.Action("DeleteMessage", "Message", new { id = Model.MessageId })'">
                     <svg class="h-4 w-4" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
                     </svg>
@@ -51,9 +49,6 @@
                     <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
                     <span class="text-xs font-semibold uppercase tracking-wider text-primary">Okundu Olarak İşaretlendi</span>
                 </div>
-                <div class="text-xs text-slate-500 dark:text-[#9db2b9] font-medium">
-                    ID: #MSG-48291
-                </div>
             </div>
 
             <div class="p-6 md:p-10">
@@ -64,9 +59,8 @@
                         <label class="text-xs font-bold text-slate-500 dark:text-[#9db2b9] uppercase tracking-widest">Gönderen</label>
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
-                                JD
                             </div>
-                            <p class="text-lg font-semibold text-slate-900 dark:text-white">John Doe</p>
+                            <p class="text-lg font-semibold text-slate-900 dark:text-white">@Model.Fullname</p>
                         </div>
                     </div>
 
@@ -77,7 +71,7 @@
                             <svg class="h-5 w-5 text-primary" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
                             </svg>
-                            <a class="text-lg hover:text-primary transition-colors" href="mailto:john.doe@example.com">john.doe@example.com</a>
+                            <a class="text-lg hover:text-primary transition-colors">@Model.EmailAddress</a>
                         </div>
                     </div>
 
@@ -85,7 +79,7 @@
                     <div class="space-y-2 md:col-span-1">
                         <label class="text-xs font-bold text-slate-500 dark:text-[#9db2b9] uppercase tracking-widest">Konu</label>
                         <div class="p-3 bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg">
-                            <p class="text-slate-900 dark:text-white font-medium">Yeni Proje Teklifi Hakkında</p>
+                            <p class="text-slate-900 dark:text-white font-medium">@Model.Subject</p>
                         </div>
                     </div>
 
@@ -96,11 +90,12 @@
                             <svg class="h-5 w-5 text-slate-500 dark:text-[#9db2b9]" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
                             </svg>
-                            <p>24 Ekim 2023, 14:45</p>
+                            <p>@Model.SendDate</p>
                         </div>
                     </div>
                 </div>
 
+                <!-- Message Detail -->
                 <!-- Message Detail -->
                 <div class="space-y-4">
                     <label class="text-xs font-bold text-slate-500 dark:text-[#9db2b9] uppercase tracking-widest">Mesaj İçeriği</label>
@@ -111,24 +106,10 @@
                                 <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H16.017C14.9124 8 14.017 7.10457 14.017 6V5C14.017 3.34315 15.3602 2 17.017 2H20.017C21.6739 2 23.017 3.34315 23.017 5V15C23.017 18.3137 20.3307 21 17.017 21H14.017ZM1.017 21L1.017 18C1.017 16.8954 1.91243 16 3.017 16H6.017C6.56928 16 7.017 15.5523 7.017 15V9C7.017 8.44772 6.56928 8 6.017 8H3.017C1.91243 8 1.017 7.10457 1.017 6V5C1.017 3.34315 2.36015 2 4.017 2H7.017C8.67386 2 10.017 3.34315 10.017 5V15C10.017 18.3137 7.33071 21 4.017 21H1.017Z"></path>
                             </svg>
                         </div>
-                        <article class="prose prose-invert dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 leading-relaxed text-lg">
-                            <p>Merhaba,</p>
-                            <p>Web sitenizi inceleme şansım oldu ve portfolyonuzdaki projeler gerçekten etkileyici. Özellikle kullanıcı arayüzü tasarımlarınızdaki detaylara verdiğiniz önem dikkatimi çekti.</p>
-                            <p>Şu anda üzerinde çalıştığımız yeni bir e-ticaret platformu projemiz var. Bu projede modern, hızlı ve kullanıcı dostu bir frontend mimarisi kurmak istiyoruz. Yeteneklerinizin bu proje için çok uygun olduğunu düşünüyoruz.</p>
-                            <p>Müsait olduğunuzda projenin detaylarını konuşmak ve bir ön görüşme yapmak isteriz. Geri dönüşünüzü bekliyoruz.</p>
-                            <p>Saygılarımla,<br />John Doe</p>
+                        <article class="prose prose-invert dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 leading-relaxed text-lg break-words overflow-wrap-anywhere">
+                            @Model.MessageDetail
                         </article>
                     </div>
-                </div>
-
-                <!-- Reply Quick Action (Optional UI hint) -->
-                <div class="mt-10 pt-8 border-t border-slate-200 dark:border-[#283539] flex justify-end">
-                    <a class="bg-primary text-white px-8 py-3 rounded-lg font-bold hover:bg-opacity-90 transition-all flex items-center gap-2" href="mailto:john.doe@example.com">
-                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                        </svg>
-                        Cevapla
-                    </a>
                 </div>
             </div>
         </section>

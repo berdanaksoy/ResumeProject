@@ -1,4 +1,6 @@
-﻿
+﻿@using ResumeProject.Context
+@inject ResumeContext _context
+
 @{
     Layout = null;
 }
@@ -6,6 +8,7 @@
 @{
     var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
     var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+    var totalUnreadMessages = _context.Messages.Count(m => m.IsRead == false);
 }
 
 
@@ -24,40 +27,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
     <script id="tailwind-config">
-        tailwind.config = {
-    darkMode: "class",
-    theme: {
-        extend: {
-            colors: {
-                "primary": "#13b6ec",
-                "primary-teal": "#0d9488",
-                "background-light": "#f6f8f8",
-                "background-dark": "#101d22",
-                "surface-dark": "#161e24",
+                tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13b6ec",
+                        "primary-teal": "#0d9488",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#101d22",
+                        "surface-dark": "#161e24",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    fontSize: {
+                        'xs': '0.875rem',
+                        'sm': '1rem',
+                        'base': '1.125rem',
+                        'lg': '1.25rem',
+                        'xl': '1.5rem',
+                        '2xl': '1.75rem',
+                        '3xl': '2.125rem',
+                        '4xl': '2.625rem',
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
             },
-            fontFamily: {
-                "display": ["Space Grotesk", "sans-serif"],
-                "mono": ["JetBrains Mono", "monospace"],
-            },
-            fontSize: {
-                'xs': '0.875rem',
-                'sm': '1rem',
-                'base': '1.125rem',
-                'lg': '1.25rem',
-                'xl': '1.5rem',
-                '2xl': '1.75rem',
-                '3xl': '2.125rem',
-                '4xl': '2.625rem',
-            },
-            borderRadius: {
-                "DEFAULT": "0.5rem",
-                "lg": "0.5rem",
-                "xl": "0.75rem",
-                "full": "9999px"
-            },
-        },
-    },
-}
+        }
     </script>
     <style>
         body {
@@ -87,7 +90,7 @@
     <aside class="w-64 flex-shrink-0 bg-white dark:bg-[#111618] border-r border-slate-200 dark:border-[#283539] flex flex-col h-screen">
         <div class="p-6 flex items-center gap-3">
             <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-background-dark font-bold text-xl">
-                JD
+                BA
             </div>
             <div class="flex flex-col">
                 <h1 class="text-sm font-bold leading-tight">Junior .NET Dev</h1>
@@ -123,7 +126,7 @@
                 <span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1">folder</span>
                 <span class="text-sm font-bold">Projelerim</span>
             </a>
-            
+
             <a class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors @(currentController == "Testimonial" ? "bg-primary/10 text-primary" : "text-slate-600 dark:text-[#9db2b9] hover:bg-slate-100 dark:hover:bg-[#1c2427]")" href="/Testimonial/Index">
                 <span class="material-symbols-outlined text-[22px]">description</span>
                 <span class="text-sm font-medium">Referanslarım</span>
@@ -145,14 +148,18 @@
             <div class="flex items-center gap-6">
                 <button class="relative p-2 text-slate-500 dark:text-[#9db2b9] hover:bg-slate-100 dark:hover:bg-[#283539] rounded-lg transition-colors">
                     <span class="material-symbols-outlined">message</span>
-                    <span class="absolute top-2 right-2.5 w-2 h-2 bg-primary rounded-full border-2 border-white dark:border-[#111618]"></span>
+                    <span class="absolute -top-1 -right-1 min-w-[18px] h-[18px] bg-red-500 text-white text-xs font-semibold rounded-full flex items-center justify-center px-1">
+                        @totalUnreadMessages
+                    </span>
                 </button>
                 <div class="flex items-center gap-3 pl-4 border-l border-slate-200 dark:border-[#283539]">
                     <div class="text-right hidden sm:block">
-                        <p class="text-xs font-bold">John Doe</p>
-                        <p class="text-[10px] text-primary">Senior Developer</p>
+                        <p class="text-xs font-bold">Berdan Aksoy</p>
+                        <p class="text-[10px] text-primary">Junior Developer</p>
                     </div>
-                    <div class="w-10 h-10 rounded-full bg-slate-200 bg-cover bg-center" data-alt="Professional headshot of a male developer" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCHbt4yI-strfVEuX0x8SAH4oMcokffsW8B0GDt_2uhoIKCbC4WglxcrR5FQjO2PnwAfuwPggUnbOtOE0InF8n8RXTqEfAZuWn99dBP6YgZVVhsijmhWwR7oohVkQqUDZdj7HV1aa1Nq0JdwsTi1D6hqS082K1FZpbP-zq6SllmfeolrAhvelQwxQTnrbqcbIW0M0ymZ1S3SW1Y2CJ1fJt6EOTgWe4K0PmwPytTzn6ZDRj0MxX8GAF49bJlkCOI-OW55fJuGlhsTj8');"></div>
+                    <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-background-dark font-bold text-xl">
+                        BA
+                    </div>
                 </div>
             </div>
         </header>

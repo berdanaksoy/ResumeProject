@@ -14,8 +14,6 @@ namespace ResumeProject.ViewComponents.DefaultViewComponents
 
         public IViewComponentResult Invoke()
         {
-            ViewBag.img = _context.Abouts.Select(x=>x.ImageURL).FirstOrDefault();
-
             return View();
         }
     }

@@ -21,43 +21,14 @@ namespace ResumeProject.Controllers
         }
 
         [HttpGet]
-        public IActionResult CreateMessage()
+        public IActionResult MessageDetails(int id)
         {
-            return View();
-        }
+            var message = _context.Messages.Find(id);
+            message.IsRead = true;
+            _context.Messages.Update(message);
+            _context.SaveChanges();
 
-        [HttpPost]
-        public IActionResult CreateMessage(Message message)
-        {
-            try
-            {
-                message.SendDate = DateTime.Now;
-                message.IsRead = false;
-                _context.Messages.Add(message);
-                _context.SaveChanges();
-
-                if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
-                {
-                    return Json(new { success = true, message = "Mesajınız başarıyla gönderildi!" });
-                }
-
-                return RedirectToAction("Index", "Default");
-            }
-            catch (Exception ex)
-            {
-                if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
-                {
-                    return Json(new { success = false, message = "Mesaj gönderilirken bir hata oluştu." });
-                }
-
-                return RedirectToAction("Index", "Default");
-            }
-        }
-
-        [HttpGet]
-        public IActionResult MessageDetails()
-        {
-            return View();
+            return View(message);
         }
 
         public IActionResult DeleteMessage(int id)
