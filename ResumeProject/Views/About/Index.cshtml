@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<ResumeProject.Entities.About>
+
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
@@ -48,202 +50,55 @@
 
         <div class="space-y-8">
             <section class="bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-700/40 rounded-xl shadow-sm overflow-hidden">
-                <div class="p-8">
-                    <div class="flex items-center gap-3 mb-8 border-b border-slate-100 dark:border-slate-700/40 pb-4">
-                        <span class="material-symbols-outlined text-primary">person</span>
-                        <h2 class="text-xl font-bold">Temel Bilgiler</h2>
-                    </div>
 
-                    <div class="flex flex-col lg:flex-row gap-8">
-                        <div class="flex-1 space-y-5">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                <div class="flex flex-col gap-2">
-                                    <label class="text-sm font-medium text-slate-600 dark:text-slate-300">Ad Soyad</label>
-                                    <input class="form-field" placeholder="Adınızı ve soyadınızı girin" type="text" value="Alex Rivera" />
-                                </div>
 
-                                <div class="flex flex-col gap-2">
-                                    <label class="text-sm font-medium text-slate-600 dark:text-slate-300">Unvan</label>
-                                    <input class="form-field" placeholder="Örn: Kıdemli Yazılım Geliştirici" type="text" value="Senior Full-Stack Developer" />
-                                </div>
+                @foreach (var item in Model)
+                {
+                    <form asp-action="SaveAbout" asp-controller="About" asp-route-id="@item.AboutId" method="post">
+                        <div class="p-8">
+                            <input type="hidden" name="AboutId" value="@item.AboutId" />
+                            <div class="flex items-center gap-3 mb-8 border-b border-slate-100 dark:border-slate-700/40 pb-4">
+                                <span class="material-symbols-outlined text-primary">person</span>
+                                <h2 class="text-xl font-bold">Temel Bilgiler</h2>
                             </div>
-
-                            <div class="flex flex-col gap-2">
-                                <label class="text-sm font-medium text-slate-600 dark:text-slate-300">Kısa Açıklama</label>
-                                <textarea class="form-field resize-none" placeholder="Kendiniz hakkında kısa bir açıklama yazın..." rows="3">Ölçeklenebilir web uygulamaları oluşturma konusunda 8 yılı aşkın deneyime sahip tutkulu bir geliştiriciyim.</textarea>
-                            </div>
-
-                            <div class="flex flex-col gap-2">
-                                <label class="text-sm font-medium text-slate-600 dark:text-slate-300">Profil Resmi URL</label>
-                                <input class="form-field" placeholder="Görsel bağlantısını yapıştırın" type="text" value="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&amp;fit=crop&amp;q=80&amp;w=200&amp;h=200" />
+                            <div class="flex flex-col lg:flex-row gap-8">
+                                <div class="flex-1 space-y-5">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                        <div class="flex flex-col gap-2">
+                                            <label class="text-sm font-medium text-slate-600 dark:text-slate-300">Ad Soyad</label>
+                                            <input name="Fullname" class="form-field" placeholder="Adınızı ve soyadınızı girin" type="text" value="@item.Fullname" />
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <label class="text-sm font-medium text-slate-600 dark:text-slate-300">Unvan</label>
+                                            <input name="Title" class="form-field" placeholder="Örn: Kıdemli Yazılım Geliştirici" type="text" value="@item.Title" />
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <label class="text-sm font-medium text-slate-600 dark:text-slate-300">Kısa Açıklama</label>
+                                        <textarea name="Description" class="form-field resize-none" placeholder="Kendiniz hakkında kısa bir açıklama yazın..." rows="3">@item.Description</textarea>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="lg:w-64 flex flex-col items-center justify-center border border-dashed border-slate-200 dark:border-slate-700/40 rounded-xl bg-slate-50/50 dark:bg-slate-900/20 p-6">
-                            <p class="text-xs text-slate-500 mb-4 font-medium uppercase tracking-wider">Profil Önizleme</p>
-                            <img alt="Profil Önizleme" class="w-32 h-32 rounded-full object-cover border-4 border-primary shadow-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBY2nwCP7jPOHI3vGrwoB5dcb_sO3cJIoQColH341HJpKmxhMnTbfWejfLJDip5U3epR4uDwlvEYvuXKYHaZCZvvLT7mpEpZXxpe20EX-L1pePIjDROvvrE7lNz3uqjXrLQM9ouqkZDBfIQX0-30y974HtiAVZA5MFwueoHREju_ruGSk_8Vz-QmSSzbPtdHQEB3WkgyM6f8EeE8FcOhc2JZd_JAdAA_QqTemfEzm1XmVHfjTOakyVzpuEpC2SGOZO5J-BaMx7LKyAU" />
+                        <div class="p-4 bg-slate-50 dark:bg-slate-900/20 border-t border-slate-200 dark:border-slate-700/40 text-right">
+                            <button type="submit" onclick="return confirm('Kaydetmek istediğinizden emin misiniz?')" class="inline-flex items-center justify-center gap-2 bg-primary text-white hover:opacity-90 px-8 py-2.5 rounded-lg font-semibold transition-all">
+                                <span class="material-symbols-outlined text-lg">save</span>
+                                <span>Kaydet</span>
+                            </button>
                         </div>
-                    </div>
-                </div>
+                    </form>
+                }
 
-                <div class="p-4 bg-slate-50 dark:bg-slate-900/20 border-t border-slate-200 dark:border-slate-700/40 text-right">
-                    <button class="inline-flex items-center justify-center gap-2 bg-primary text-white hover:opacity-90 px-8 py-2.5 rounded-lg font-semibold transition-all">
-                        <span class="material-symbols-outlined text-lg">save</span>
-                        <span>Kaydet</span>
-                    </button>
-                </div>
+
             </section>
 
             <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 items-start">
-                <section class="bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-700/40 rounded-xl shadow-sm overflow-hidden flex flex-col">
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-6 border-b border-slate-100 dark:border-slate-700/40 pb-4">
-                            <div class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-primary">school</span>
-                                <h2 class="text-xl font-bold">Eğitim</h2>
-                            </div>
 
-                            <button class="flex items-center gap-1 text-primary hover:bg-primary/10 px-3 py-1.5 rounded-lg transition-all text-sm font-medium">
-                                <span class="material-symbols-outlined text-base">add</span>
-                                <span>Yeni Ekle</span>
-                            </button>
-                        </div>
+                @await Component.InvokeAsync("AdminAboutEducation")
 
-                        <div class="space-y-6">
-                            <div class="relative group border border-dashed border-slate-200 dark:border-slate-700/40 p-5 rounded-xl hover:border-primary/50 transition-all">
-                                <button class="absolute top-4 right-4 text-slate-400 hover:text-red-500 transition-colors">
-                                    <span class="material-symbols-outlined">delete</span>
-                                </button>
+                @await Component.InvokeAsync("AdminAboutHighlight")
 
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div class="flex flex-col gap-2">
-                                        <label class="text-xs font-medium text-slate-500 dark:text-slate-400">Okul / Üniversite</label>
-                                        <input class="form-field" type="text" value="Boğaziçi Üniversitesi" />
-                                    </div>
-
-                                    <div class="flex flex-col gap-2">
-                                        <label class="text-xs font-medium text-slate-500 dark:text-slate-400">Bölüm</label>
-                                        <input class="form-field" type="text" value="Bilgisayar Mühendisliği (Yüksek Lisans)" />
-                                    </div>
-
-                                    <div class="flex flex-col gap-2">
-                                        <label class="text-xs font-medium text-slate-500 dark:text-slate-400">Başlangıç Tarihi</label>
-                                        <input class="form-field" type="date" value="2018-09-01" />
-                                    </div>
-
-                                    <div class="flex flex-col gap-2">
-                                        <label class="text-xs font-medium text-slate-500 dark:text-slate-400">Bitiş Tarihi</label>
-                                        <input class="form-field" type="date" value="2020-06-15" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="relative group border border-dashed border-slate-200 dark:border-slate-700/40 p-5 rounded-xl hover:border-primary/50 transition-all">
-                                <button class="absolute top-4 right-4 text-slate-400 hover:text-red-500 transition-colors">
-                                    <span class="material-symbols-outlined">delete</span>
-                                </button>
-
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div class="flex flex-col gap-2">
-                                        <label class="text-xs font-medium text-slate-500 dark:text-slate-400">Okul / Üniversite</label>
-                                        <input class="form-field" type="text" value="İTÜ" />
-                                    </div>
-
-                                    <div class="flex flex-col gap-2">
-                                        <label class="text-xs font-medium text-slate-500 dark:text-slate-400">Bölüm</label>
-                                        <input class="form-field" type="text" value="Yazılım Mühendisliği (Lisans)" />
-                                    </div>
-
-                                    <div class="flex flex-col gap-2">
-                                        <label class="text-xs font-medium text-slate-500 dark:text-slate-400">Başlangıç Tarihi</label>
-                                        <input class="form-field" type="date" value="2014-09-01" />
-                                    </div>
-
-                                    <div class="flex flex-col gap-2">
-                                        <label class="text-xs font-medium text-slate-500 dark:text-slate-400">Bitiş Tarihi</label>
-                                        <input class="form-field" type="date" value="2018-06-30" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="p-4 bg-slate-50 dark:bg-slate-900/20 border-t border-slate-200 dark:border-slate-700/40 text-right">
-                        <button class="inline-flex items-center justify-center gap-2 bg-primary text-white hover:opacity-90 px-8 py-2.5 rounded-lg font-semibold transition-all">
-                            <span class="material-symbols-outlined text-lg">save</span>
-                            <span>Kaydet</span>
-                        </button>
-                    </div>
-                </section>
-
-                <section class="bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-700/40 rounded-xl shadow-sm overflow-hidden flex flex-col">
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-6 border-b border-slate-100 dark:border-slate-700/40 pb-4">
-                            <div class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-primary">auto_awesome</span>
-                                <h2 class="text-xl font-bold">Öne Çıkanlar</h2>
-                            </div>
-
-                            <button class="flex items-center gap-1 text-primary hover:bg-primary/10 px-3 py-1.5 rounded-lg transition-all text-sm font-medium">
-                                <span class="material-symbols-outlined text-base">add</span>
-                                <span>Yeni Ekle</span>
-                            </button>
-                        </div>
-
-                        <div class="space-y-4">
-                            <div class="flex flex-col gap-4 p-4 border border-slate-100 dark:border-slate-700/40 rounded-xl bg-slate-50/50 dark:bg-slate-900/20 group">
-                                <div class="flex items-start justify-between">
-                                    <div class="flex-1 space-y-3">
-                                        <div class="flex flex-col gap-1.5">
-                                            <label class="text-xs font-medium text-slate-500 dark:text-slate-400">Başlık</label>
-                                            <input class="form-field font-semibold" placeholder="Başlık" type="text" value="Açık Kaynak Katılımcısı" />
-                                        </div>
-
-                                        <div class="flex flex-col gap-1.5">
-                                            <label class="text-xs font-medium text-slate-500 dark:text-slate-400">Açıklama</label>
-                                            <textarea class="form-field" placeholder="Başarınız hakkında kısa bir açıklama..." rows="2">50'den fazla onaylanmış PR ile popüler React kütüphanelerine aktif olarak katkıda bulunuyorum.</textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex items-start pl-2">
-                                        <button class="p-2 text-slate-400 hover:text-red-500 transition-colors">
-                                            <span class="material-symbols-outlined">delete_outline</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="flex flex-col gap-4 p-4 border border-slate-100 dark:border-slate-700/40 rounded-xl bg-slate-50/50 dark:bg-slate-900/20 group">
-                                <div class="flex items-start justify-between">
-                                    <div class="flex-1 space-y-3">
-                                        <div class="flex flex-col gap-1.5">
-                                            <label class="text-xs font-medium text-slate-500 dark:text-slate-400">Başlık</label>
-                                            <input class="form-field font-semibold" placeholder="Başlık" type="text" value="Teknoloji Konuşmacısı" />
-                                        </div>
-
-                                        <div class="flex flex-col gap-1.5">
-                                            <label class="text-xs font-medium text-slate-500 dark:text-slate-400">Açıklama</label>
-                                            <textarea class="form-field" placeholder="Başarınız hakkında kısa bir açıklama..." rows="2">JSConf Europe 2023'te 'Ön Yüz Mimarilerini Ölçeklendirme' üzerine sunum yaptım.</textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex items-start pl-2">
-                                        <button class="p-2 text-slate-400 hover:text-red-500 transition-colors">
-                                            <span class="material-symbols-outlined">delete_outline</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="p-4 bg-slate-50 dark:bg-slate-900/20 border-t border-slate-200 dark:border-slate-700/40 text-right">
-                        <button class="inline-flex items-center justify-center gap-2 bg-primary text-white hover:opacity-90 px-8 py-2.5 rounded-lg font-semibold transition-all">
-                            <span class="material-symbols-outlined text-lg">save</span>
-                            <span>Kaydet</span>
-                        </button>
-                    </div>
-                </section>
             </div>
         </div>
     </div>

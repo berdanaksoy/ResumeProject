@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "Yetenek Ekle";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<style>
+    .page-scroll {
+        height: calc(100vh - 64px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-bottom: 32px;
+    }
+</style>
+
+<div class="page-scroll">
+    <!-- BEGIN: Main Content -->
+    <div class="flex-grow flex items-center justify-center p-4 md:p-8" data-purpose="page-content">
+        <!-- BEGIN: Skill Add Card -->
+        <section class="w-full max-w-2xl bg-white dark:bg-[#111618] border border-slate-200 dark:border-[#283539] rounded-xl overflow-hidden shadow-2xl" data-purpose="skill-form-card">
+            <!-- BEGIN: Card Header -->
+            <header class="p-6 border-b border-slate-200 dark:border-[#283539] flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary">auto_awesome</span>
+                    </div>
+                    <h1 class="text-xl font-bold tracking-wide text-slate-900 dark:text-white">Yetenek Ekle</h1>
+                </div>
+                <a class ="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 dark:bg-[#1c2427] hover:bg-slate-200 dark:hover:bg-[#283539] text-slate-700 dark:text-[#9db2b9] text-sm transition-colors border border-slate-200 dark:border-[#283539]" href="/Skill">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span>
+                    Geri Dön
+                </a>
+            </header>
+            <!-- END: Card Header -->
+            <!-- BEGIN: Card Body / Form -->
+            <form asp-action="CreateSkill" asp-controller="Skill" method="post">
+                <div class="p-8 space-y-8">
+                    <!-- Skill Name Input Group -->
+                    <div class="space-y-3">
+                        <label class="block text-xs font-bold text-slate-500 dark:text-[#9db2b9] uppercase tracking-widest" for="skill-name">
+                            YETENEK ADI
+                        </label>
+                        <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg px-4 py-3 text-base text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-[#9db2b9] focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" id="SkillName" placeholder="Yetenek adını giriniz..." type="text" name="SkillName" />
+                    </div>
+
+                    <!-- Skill Level Input Group -->
+                    <div class="space-y-3">
+                        <label class="block text-xs font-bold text-slate-500 dark:text-[#9db2b9] uppercase tracking-widest" for="skill-level">
+                            YETENEK SEVİYESİ
+                        </label>
+                        <div class="flex items-center gap-3">
+                            <div class="relative flex-grow">
+                                <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg px-4 py-3 text-base text-slate-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all pr-12" id="skill-level" max="100" min="0" type="number" value="80" name="SkillLevel" />
+                                <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 dark:text-[#9db2b9] font-medium">%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="pt-4 border-t border-slate-200 dark:border-[#283539] flex justify-end">
+                        <!-- BEGIN: Submit Button -->
+                        <button class="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-lg flex items-center gap-2 transition-all shadow-lg shadow-primary/20 hover:shadow-primary/30" data-purpose="save-button" type="submit">
+                            <span class="material-symbols-outlined font-bold">check</span>
+                            <span>Kaydet</span>
+                        </button>
+                        <!-- END: Submit Button -->
+                    </div>
+                </div>
+            </form>
+            <!-- END: Card Body / Form -->
+        </section>
+        <!-- END: Skill Add Card -->
+    </div>
+    <!-- END: Main Content -->
+    <!-- BEGIN: Footer -->
+    <footer class="py-6 text-center" data-purpose="site-footer">
+        <p class="text-slate-500 dark:text-[#9db2b9] text-sm tracking-wide">
+            © 2024 Developer Portfolio Admin Dashboard
+        </p>
+    </footer>
+    <!-- END: Footer -->
+</div>

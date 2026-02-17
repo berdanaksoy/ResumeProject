@@ -1,0 +1,65 @@
+﻿@model List<ResumeProject.Entities.Education>
+
+<form asp-controller="About" asp-action="SaveEducation" method="post">
+    <section class="bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-700/40 rounded-xl shadow-sm overflow-hidden flex flex-col">
+        <div class="p-6">
+            <div class="flex items-center justify-between mb-6 border-b border-slate-100 dark:border-slate-700/40 pb-4">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-primary">school</span>
+                    <h2 class="text-xl font-bold">Eğitim</h2>
+                </div>
+
+                <a href="@Url.Action("CreateEducation", "About")"
+                   class="flex items-center gap-1 text-primary hover:bg-primary/10 px-3 py-1.5 rounded-lg transition-all text-sm font-medium">
+                    <span class="material-symbols-outlined text-base">add</span>
+                    <span>Yeni Ekle</span>
+                </a>
+            </div>
+
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                <div class="space-y-6">
+                    <input type="hidden" name="educations[@i].EducationId" value="@Model[i].EducationId" />
+
+                    <div class="relative group border border-dashed border-slate-200 dark:border-slate-700/40 p-5 rounded-xl hover:border-primary/50 transition-all">
+                        <a onclick="return confirm('Silmek istediğinizden emin misiniz?')"
+                           href="/About/DeleteEducation/@Model[i].EducationId"
+                           class="absolute top-4 right-4 text-slate-400 hover:text-red-500 transition-colors">
+                            <span class="material-symbols-outlined">delete</span>
+                        </a>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="flex flex-col gap-2">
+                                <label class="text-xs font-medium text-slate-500 dark:text-slate-400">Okul / Üniversite</label>
+                                <input name="educations[@i].EducationProvider" class="form-field" type="text" value="@Model[i].EducationProvider" />
+                            </div>
+
+                            <div class="flex flex-col gap-2">
+                                <label class="text-xs font-medium text-slate-500 dark:text-slate-400">Bölüm</label>
+                                <input name="educations[@i].EducationTitle" class="form-field" type="text" value="@Model[i].EducationTitle" />
+                            </div>
+
+                            <div class="flex flex-col gap-2">
+                                <label class="text-xs font-medium text-slate-500 dark:text-slate-400">Başlangıç Tarihi</label>
+                                <input name="educations[@i].EducationStartDate" class="form-field" type="date" value="@Model[i].EducationStartDate.ToString("yyyy-MM-dd")" />
+                            </div>
+
+                            <div class="flex flex-col gap-2">
+                                <label class="text-xs font-medium text-slate-500 dark:text-slate-400">Bitiş Tarihi</label>
+                                <input name="educations[@i].EducationEndDate" class="form-field" type="date" value="@Model[i].EducationEndDate.ToString("yyyy-MM-dd")" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+        <div class="p-4 bg-slate-50 dark:bg-slate-900/20 border-t border-slate-200 dark:border-slate-700/40 text-right">
+            <button type="submit" onclick="return confirm('Kaydetmek istediğinizden emin misiniz?')" class="inline-flex items-center justify-center gap-2 bg-primary text-white hover:opacity-90 px-8 py-2.5 rounded-lg font-semibold transition-all">
+                <span class="material-symbols-outlined text-lg">save</span>
+                <span>Kaydet</span>
+            </button>
+        </div>
+    </section>
+</form>

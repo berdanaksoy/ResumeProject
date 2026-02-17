@@ -1,0 +1,58 @@
+﻿@model List<ResumeProject.Entities.Skill>
+
+<section class="bg-white dark:bg-[#111618] rounded-xl shadow-sm border border-slate-200 dark:border-[#283539] overflow-hidden">
+    <form asp-action="SaveSkillList" asp-controller="Skill" asp-route-id="@ViewBag.SkillDescription.SkillDescriptionId" method="post">
+        <div class="p-6 border-b border-slate-200 dark:border-[#283539] flex items-center justify-between bg-slate-50/50 dark:bg-[#1c2427]">
+            <h2 class="text-xl font-semibold flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">format_list_bulleted</span>
+                Yetenek Listesi
+            </h2>
+            <a class="text-primary hover:bg-primary/10 border border-primary/30 px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 transition-all" href="@Url.Action("CreateSkill", "Skill")">
+                <span class="material-symbols-outlined text-[18px]">add</span>
+                Yeni Yetenek Ekle
+            </a>
+        </div>
+        <div class="p-6">
+
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                <input type="hidden" name="skills[@i].SkillId" value="@Model[i].SkillId" />
+                <div class="space-y-4 mb-8">
+                    <!-- Skill Header Labels -->
+                    <div class="grid grid-cols-12 gap-4 px-2 hidden md:grid">
+                        <div class="col-span-7 lg:col-span-8">
+                            <label class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-[#9db2b9]">Yetenek Adı</label>
+                        </div>
+                        <div class="col-span-4 lg:col-span-3">
+                            <label class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-[#9db2b9]">Yetenek Seviyesi</label>
+                        </div>
+                        <div class="col-span-1"></div>
+                    </div>
+                    <div class="grid grid-cols-12 gap-4 items-center bg-slate-50 dark:bg-[#1c2427] p-4 rounded-xl border border-slate-100 dark:border-[#283539] group">
+                        <div class="col-span-12 md:col-span-7 lg:col-span-8">
+                            <input name="skills[@i].SkillName" class="w-full bg-white dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2" placeholder="Örn: React.js" type="text" value="@Model[i].SkillName" />
+                        </div>
+                        <div class="col-span-12 md:col-span-4 lg:col-span-3 flex items-center gap-3">
+                            <div class="relative w-full">
+                                <input name="skills[@i].SkillLevel" class="w-full bg-white dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 pr-8 px-3 py-2" max="100" min="0" type="number" value="@Model[i].SkillLevel" />
+                                <span class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-[#9db2b9] font-medium">%</span>
+                            </div>
+                        </div>
+                        <div class="col-span-12 md:col-span-1 flex justify-end">
+                            <a onclick="return confirm('Silmek istediğinizden emin misiniz?')" class="p-2 text-slate-400 dark:text-[#9db2b9] hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all" title="Sil" href="/Skill/DeleteSkill/@Model[i].SkillId">
+                                <span class="material-symbols-outlined">delete</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-slate-200 dark:border-[#283539]">
+                <button type="submit" onclick="return confirm('Kaydetmek istediğinizden emin misiniz?')" class="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white px-10 py-2.5 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors shadow-lg shadow-primary/20">
+                    <span class="material-symbols-outlined text-[20px]">save</span>
+                    Değişiklikleri Kaydet
+                </button>
+            </div>
+        </div>
+    </form>
+</section>

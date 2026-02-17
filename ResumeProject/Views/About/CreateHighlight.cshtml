@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Öne Çıkan Ekleme";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<style>
+    .page-scroll {
+        height: calc(100vh - 64px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-bottom: 32px;
+    }
+</style>
+
+<div class="page-scroll">
+    <!-- BEGIN: Main Container -->
+    <div class="w-full max-w-[1600px] mx-auto flex justify-center items-center py-12 px-6" data-purpose="admin-highlights-management">
+        <!-- BEGIN: Highlight Detail Card -->
+        <div class="w-full max-w-2xl bg-white dark:bg-[#111618] border border-slate-200 dark:border-[#283539] rounded-2xl shadow-2xl overflow-hidden" data-purpose="management-card">
+            <!-- BEGIN: Card Header -->
+            <header class="flex items-center justify-between p-6 border-b border-slate-200 dark:border-[#283539]">
+                <div class="flex items-center gap-3">
+                    <!-- Decorative Icon -->
+                    <div class="bg-primary/10 p-2 rounded-lg">
+                        <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-7.714 2.143L11 21l-2.286-6.857L1 12l7.714-2.143L11 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                        </svg>
+                    </div>
+                    <h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Öne Çıkan Ekleyin</h1>
+                </div>
+                <!-- Back Button -->
+                <a class="flex items-center gap-2 px-4 py-2 bg-slate-100 dark:bg-[#1c2427] hover:bg-slate-200 dark:hover:bg-[#283539] text-slate-700 dark:text-[#9db2b9] hover:text-slate-900 dark:hover:text-white rounded-lg transition-all text-sm font-medium border border-slate-200 dark:border-[#283539]" data-purpose="back-button" href="/About">
+                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                    </svg>
+                    Geri Dön
+                </a>
+            </header>
+            <!-- END: Card Header -->
+            <!-- BEGIN: Management Form -->
+            <form class="p-8 space-y-6" id="highlight-form" asp-controller="About" asp-action="CreateHighlight" method="post">
+                <!-- Title Field -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-semibold text-slate-600 dark:text-[#9db2b9] uppercase tracking-wider" for="highlight-title">
+                        Başlık
+                    </label>
+                    <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder-slate-400 dark:placeholder-[#9db2b9]" id="highlight-title" name="HighlightTitle" placeholder="Öne çıkan başlığını giriniz..." required="" type="text" />
+                </div>
+
+                <!-- Description Field -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-semibold text-slate-600 dark:text-[#9db2b9] uppercase tracking-wider" for="highlight-desc">
+                        Açıklama
+                    </label>
+                    <textarea class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all resize-none placeholder-slate-400 dark:placeholder-[#9db2b9]" id="highlight-desc" name="HighlightDescription" placeholder="Detaylı açıklamayı buraya yazınız..." required="" rows="5"></textarea>
+                </div>
+
+                <!-- BEGIN: Action Footer -->
+                <div class="pt-6 border-t border-slate-200 dark:border-[#283539] flex justify-end">
+                    <button class="group relative flex items-center gap-2 px-8 py-3 bg-primary hover:bg-primary/90 text-white font-bold rounded-xl transition-all shadow-lg shadow-primary/20 active:scale-95" data-purpose="save-button" type="submit">
+                        <svg class="h-5 w-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill-rule="evenodd"></path>
+                        </svg>
+                        Kaydet
+                    </button>
+                </div>
+                <!-- END: Action Footer -->
+            </form>
+            <!-- END: Management Form -->
+        </div>
+        <!-- END: Highlight Detail Card -->
+    </div>
+    <!-- END: Main Container -->
+</div>

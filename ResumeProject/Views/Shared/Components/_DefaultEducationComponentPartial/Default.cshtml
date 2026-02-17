@@ -9,6 +9,6 @@
     @foreach (var item in Model)
     {
         <p class="h5">@item.EducationTitle</p>
-        <p>@item.EducationProvider, @item.EducationDate</p>
+        <p>@item.EducationProvider <br/> @item.EducationStartDate.ToShortDateString() - @item.EducationEndDate.ToShortDateString()</p>
     }
 </div>
