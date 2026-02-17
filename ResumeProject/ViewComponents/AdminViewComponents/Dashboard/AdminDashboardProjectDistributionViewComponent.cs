@@ -14,7 +14,18 @@ namespace ResumeProject.ViewComponents.AdminViewComponents.Dashboard
 
         public IViewComponentResult Invoke()
         {
-            return View();
+            var values = _context.Portfolios
+                .Where(p => p.IsActive)
+                .GroupBy(p => p.Category.CategoryName)
+                .Select(g => new
+                {
+                    Category = g.Key,
+                    Count = g.Count()
+                })
+                .ToList();
+
+            return View(values);
         }
+
     }
 }

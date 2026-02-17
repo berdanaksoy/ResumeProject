@@ -15,10 +15,13 @@ namespace ResumeProject.ViewComponents.AdminViewComponents.Dashboard
 
         public IViewComponentResult Invoke()
         {
-            var sixMonthsAgo = DateTime.Now.AddMonths(-6);
+            // ✅ DateTime.Now yerine sabit tarih
+            var refDate = new DateTime(2026, 2, 17);
+
+            var sixMonthsAgo = refDate.AddMonths(-6);
 
             var monthlyData = _context.Messages
-                .Where(m => m.SendDate >= sixMonthsAgo)
+                .Where(m => m.SendDate >= sixMonthsAgo && m.SendDate <= refDate)
                 .GroupBy(m => new
                 {
                     Year = m.SendDate.Year,
@@ -33,13 +36,13 @@ namespace ResumeProject.ViewComponents.AdminViewComponents.Dashboard
                 .ToList();
 
             string[] turkishMonths = { "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran",
-                                       "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık" };
+                               "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık" };
 
             var monthsList = new List<object>();
 
             for (int i = 5; i >= 0; i--)
             {
-                var date = DateTime.Now.AddMonths(-i);
+                var date = refDate.AddMonths(-i);
                 var count = monthlyData
                     .FirstOrDefault(m => m.Year == date.Year && m.Month == date.Month)?.Count ?? 0;
 
@@ -58,5 +61,7 @@ namespace ResumeProject.ViewComponents.AdminViewComponents.Dashboard
 
             return View();
         }
+
+
     }
 }

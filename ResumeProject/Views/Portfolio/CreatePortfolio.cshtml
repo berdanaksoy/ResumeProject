@@ -1,283 +1,89 @@
-﻿@model ResumeProject.Entities.Portfolio
+﻿@model List<ResumeProject.Entities.Category>
 
 @{
-    ViewData["Title"] = "CreatePortfolio";
+    ViewData["Title"] = "Portfolyo Ekle";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 
 <style>
-    :root {
-        --bg-card: #1a2332;
-        --bg-input: #243447;
-        --accent: #00d9ff;
-        --accent-purple: #7c3aed;
-        --text: #e8ecf2;
-        --text-muted: #94a3b8;
-        --success: #10b981;
-        --border: rgba(255,255,255,0.1);
-    }
-
-    .portfolio-container {
-        max-width: 800px;
-        margin: 0 auto;
-    }
-
-    .page-header {
-        margin-bottom: 2.5rem;
-    }
-
-    .page-title {
-        font-size: 2rem;
-        font-weight: 700;
-        background: linear-gradient(135deg, var(--accent), var(--accent-purple));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 0.5rem;
-    }
-
-    .page-subtitle {
-        color: var(--text-muted);
-        font-size: 0.95rem;
-    }
-
-    .form-card {
-        background: var(--bg-card);
-        border-radius: 20px;
-        padding: 2.5rem;
-        border: 1px solid var(--border);
-        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-    }
-
-    .form-group {
-        margin-bottom: 2rem;
-    }
-
-    .form-label {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: var(--text);
-        font-weight: 600;
-        font-size: 0.95rem;
-        margin-bottom: 0.75rem;
-    }
-
-    .label-icon {
-        font-size: 1.2rem;
-    }
-
-    .required {
-        color: #ef4444;
-        margin-left: 0.25rem;
-    }
-
-    .form-input {
-        width: 100%;
-        padding: 1rem 1.25rem;
-        background: var(--bg-input);
-        border: 2px solid var(--border);
-        border-radius: 12px;
-        color: var(--text);
-        font-size: 1rem;
-        transition: all 0.3s ease;
-        font-family: inherit;
-    }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--accent);
-            background: rgba(0, 217, 255, 0.05);
-            box-shadow: 0 0 0 4px rgba(0, 217, 255, 0.1);
-        }
-
-        .form-input::placeholder {
-            color: var(--text-muted);
-            opacity: 0.6;
-        }
-
-    .input-hint {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin-top: 0.5rem;
-        color: var(--text-muted);
-        font-size: 0.813rem;
-    }
-
-    .char-counter {
-        margin-left: auto;
-        font-weight: 600;
-        color: var(--accent);
-    }
-
-    .form-actions {
-        display: flex;
-        gap: 1rem;
-        margin-top: 2.5rem;
-        padding-top: 2rem;
-        border-top: 1px solid var(--border);
-    }
-
-    .btn {
-        flex: 1;
-        padding: 1rem 2rem;
-        border-radius: 12px;
-        border: none;
-        font-weight: 600;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        font-family: inherit;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-    }
-
-    .btn-primary {
-        background: linear-gradient(135deg, var(--accent), var(--accent-purple));
-        color: white;
-        box-shadow: 0 4px 20px rgba(0, 217, 255, 0.3);
-    }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(0, 217, 255, 0.4);
-        }
-
-    .btn-secondary {
-        background: var(--bg-input);
-        color: var(--text);
-        border: 2px solid var(--border);
-    }
-
-        .btn-secondary:hover {
-            background: rgba(148, 163, 184, 0.1);
-            border-color: var(--text-muted);
-        }
-
-    .btn:active {
-        transform: translateY(0);
-    }
-
-    .info-box {
-        background: rgba(0, 217, 255, 0.05);
-        border: 1px solid rgba(0, 217, 255, 0.2);
-        border-radius: 12px;
-        padding: 1.25rem;
-        margin-bottom: 2rem;
-        display: flex;
-        gap: 1rem;
-        align-items: start;
-    }
-
-    .info-icon {
-        font-size: 1.5rem;
-        flex-shrink: 0;
-    }
-
-    .info-content {
-        flex: 1;
-    }
-
-    .info-title {
-        color: var(--accent);
-        font-weight: 600;
-        margin-bottom: 0.25rem;
-    }
-
-    .info-text {
-        color: var(--text-muted);
-        font-size: 0.875rem;
-        line-height: 1.5;
-    }
-
-    @@media (max-width: 768px) {
-        .form-card {
-            padding: 1.5rem;
-        }
-
-        .form-actions {
-            flex-direction: column;
-        }
-
-        .page-title {
-            font-size: 1.5rem;
-        }
+    .page-scroll {
+        height: calc(100vh - 64px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-bottom: 32px;
     }
 </style>
 
-<div class="portfolio-container">
-    <div class="page-header">
-        <h1 class="page-title">🎨 Yeni Portfolio Ekle</h1>
-        <p class="page-subtitle">Portfolio koleksiyonunuza yeni bir proje ekleyin</p>
-    </div>
-
-    <div class="info-box">
-        <div class="info-icon">💡</div>
-        <div class="info-content">
-            <div class="info-title">İpucu</div>
-            <div class="info-text">
-                Portfolio başlığınız açıklayıcı ve profesyonel olmalıdır.
-                Projenizin türünü ve kapsamını yansıtacak şekilde isimlendirin.
-            </div>
-        </div>
-    </div>
-
-    <div class="form-card">
-        <form method="post">
-            <div class="form-group">
-                <label class="form-label">
-                    <span class="label-icon">📝</span>
-                    Portfolio Başlığı
-                    <span class="required">*</span>
-                </label>
-                <input type="text"
-                       asp-for="Title"
-                       class="form-input"
-                       placeholder="Örn: E-Ticaret Web Sitesi Tasarımı"
-                       maxlength="100"
-                       required
-                       oninput="updateCharCount(this)" />
-                <div class="input-hint">
-                    <span>💼 Projenizi en iyi tanımlayan başlığı girin</span>
-                    <span class="char-counter" id="charCounter">0/100</span>
+<div class="page-scroll">
+    <!-- BEGIN: Portfolio Add Container -->
+    <div class="w-full max-w-3xl mx-auto py-12 px-6" data-purpose="portfolio-add-container">
+        <div class="bg-white dark:bg-[#111618] border border-slate-200 dark:border-[#283539] rounded-xl shadow-2xl overflow-hidden">
+            <!-- BEGIN: Card Header -->
+            <header class="p-6 border-b border-slate-200 dark:border-[#283539] flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <div class="bg-primary/10 border border-primary/20 p-2.5 rounded-lg flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary">work</span>
+                    </div>
+                    <h1 class="text-xl font-semibold text-slate-900 dark:text-white tracking-tight">Portfolyo Ekle</h1>
                 </div>
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
+                <a class="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 dark:bg-[#1c2427] hover:bg-slate-200 dark:hover:bg-[#283539] border border-slate-200 dark:border-[#283539] text-sm text-slate-700 dark:text-[#9db2b9] transition-colors" type="button" href="/Portfolio/Index">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span>
+                    Geri Dön
+                </a>
+            </header>
+            <!-- END: Card Header -->
+            <!-- BEGIN: Form Body -->
+            <form method="post" class="space-y-6 p-6">
+                <!-- Field: Başlık -->
+                <div class="space-y-2">
+                    <label class="block text-xs font-bold text-slate-500 dark:text-[#9db2b9] uppercase tracking-widest" for="title">Başlık</label>
+                    <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg px-4 py-3 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-[#9db2b9] focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"
+                           id="title" name="Title" placeholder="Proje başlığını giriniz..." type="text" />
+                </div>
 
-            <div class="form-actions">
-                <button type="button" class="btn btn-secondary" onclick="window.location.href='@Url.Action("Index", "Portfolio")'">
-                    ❌ İptal
-                </button>
-                <button type="submit" class="btn btn-primary">
-                    ✅ Kaydet
-                </button>
-            </div>
-        </form>
+                <!-- Field: Görsel URL -->
+                <div class="space-y-2">
+                    <label class="block text-xs font-bold text-slate-500 dark:text-[#9db2b9] uppercase tracking-widest" for="imageUrl">Görsel URL</label>
+                    <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg px-4 py-3 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-[#9db2b9] focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all font-mono text-sm"
+                           id="imageUrl" name="ImageURL" placeholder="https://örnek.com/gorsel.jpg" type="text" />
+                </div>
+
+                <!-- Field: Kategori -->
+                <div class="space-y-2">
+                    <label class="block text-xs font-bold text-slate-500 dark:text-[#9db2b9] uppercase tracking-widest" for="categoryId">Kategori</label>
+                    <div class="relative">
+                        <select class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all appearance-none cursor-pointer"
+                                id="categoryId" name="CategoryId">
+                            <option disabled selected value="">Kategori seçiniz...</option>
+                            @foreach (var category in Model)
+                            {
+                                <option value="@category.CategoryId">@category.CategoryName</option>
+                            }
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-slate-400 dark:text-[#9db2b9]">
+                            <span class="material-symbols-outlined">expand_more</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Field: Durum (Aktif mi?) -->
+                <div class="pt-2 flex items-center gap-3">
+                    <input type="hidden" name="IsActive" value="false" />
+                    <input class="w-5 h-5 rounded border-slate-300 dark:border-[#283539] bg-slate-50 dark:bg-[#1d2a33] text-primary focus:ring-primary/50 focus:ring-offset-0 focus:ring-2 cursor-pointer"
+                           id="isActive" name="IsActive" type="checkbox" value="true" />
+                    <label class="text-sm font-medium text-slate-700 dark:text-[#9db2b9] cursor-pointer select-none" for="isActive">Aktif mi?</label>
+                </div>
+
+                <!-- BEGIN: Action Footer -->
+                <div class="pt-6 border-t border-slate-200 dark:border-[#283539] flex justify-end">
+                    <button class="bg-primary hover:bg-primary/90 text-white font-bold px-8 py-3 rounded-xl flex items-center gap-2 transition-all transform hover:scale-[1.02] active:scale-95 shadow-lg shadow-primary/20" type="submit">
+                        <span class="material-symbols-outlined font-bold">check</span>
+                        Kaydet
+                    </button>
+                </div>
+                <!-- END: Action Footer -->
+            </form>
+            <!-- END: Form Body -->
     </div>
+    <!-- END: Portfolio Add Container -->
 </div>
-
-<script>
-    function updateCharCount(input) {
-        const counter = document.getElementById('charCounter');
-        const length = input.value.length;
-        counter.textContent = length + '/100';
-
-        if (length > 80) {
-            counter.style.color = '#ef4444';
-        } else if (length > 50) {
-            counter.style.color = '#f59e0b';
-        } else {
-            counter.style.color = 'var(--accent)';
-        }
-    }
-
-    // Sayfa yüklendiğinde karakter sayacını güncelle
-    document.addEventListener('DOMContentLoaded', function() {
-        const input = document.querySelector('input[asp-for="Title"]');
-        if (input && input.value) {
-            updateCharCount(input);
-        }
-    });
-</script>

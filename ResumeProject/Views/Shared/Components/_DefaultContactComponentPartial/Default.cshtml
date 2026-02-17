@@ -106,6 +106,9 @@
 
 							<div class="col-12 text-center">
 								<button class="btn btn-primary" type="submit" id="cf-submit" name="cf-submit">Mesajı Gönder</button>
+								<div id="sendStatus" class="mt-3" style="display:none; font-weight:600;">
+									Mesaj gönderildi ✅
+								</div>
 							</div>
 						</div>
 					</form>
@@ -115,3 +118,24 @@
 		</div>
 	</div>
 </section>
+<script>
+	(function () {
+		const form = document.getElementById("cf");
+		const status = document.getElementById("sendStatus");
+		const btn = document.getElementById("cf-submit");
+
+		if (!form || !status || !btn) return;
+
+		form.addEventListener("submit", function () {
+			btn.disabled = true;
+
+			status.style.display = "block";
+
+			setTimeout(() => {
+				status.style.display = "none";
+				btn.disabled = false;
+			}, 3000);
+		});
+	})();
+</script>
+

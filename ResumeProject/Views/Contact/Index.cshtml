@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ResumeProject.Entities.Contact
+
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
@@ -16,86 +18,112 @@
     <div class="max-w-[1600px] mx-auto py-12 px-6 space-y-8">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-                <h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">İletişim Bilgileri Yönetimi</h1>
-                <p class="text-slate-600 dark:text-[#9db2b9] mt-1">"Bana Ulaşın" sayfasındaki iletişim bilgilerini ve açıklama metinlerini buradan güncelleyebilirsiniz.</p>
+                <h1 class="text-4xl font-bold text-primary mb-2">İletişim Bilgileri Yönetimi</h1>
+                <p class="text-slate-500 dark:text-slate-400">"Bana Ulaşın" sayfasındaki iletişim bilgilerini ve açıklama metinlerini buradan güncelleyebilirsiniz.</p>
             </div>
         </div>
 
-        <div class="bg-white dark:bg-[#111618] rounded-xl border border-slate-200 dark:border-[#283539] shadow-2xl overflow-hidden">
-            <div class="p-8 space-y-8">
-                <div class="space-y-4">
-                    <div class="flex items-center gap-2 text-primary font-bold uppercase tracking-wider text-sm">
-                        <span class="material-symbols-outlined text-[20px]">description</span>
-                        İletişim Açıklaması
-                    </div>
-                    <div>
-                        <textarea class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-[#9db2b9] px-4 py-3 transition-all outline-none resize-none" placeholder="İletişim sayfasında görünecek genel açıklama metnini giriniz..." rows="4"></textarea>
-                        <p class="text-xs text-slate-500 dark:text-[#9db2b9] mt-2">Bu alan web sitenizdeki iletişim formunun üstünde yer alır.</p>
-                    </div>
-                </div>
+        <form asp-action="UpdateContact" asp-controller="Contact" method="post">
+            <input type="hidden" name="ContactId" value="@Model.ContactId" />
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-2 text-primary font-bold uppercase tracking-wider text-sm">
-                            <span class="material-symbols-outlined text-[20px]">call</span>
-                            Telefon Numaraları
-                        </div>
-                        <div class="space-y-4">
-                            <div class="relative group">
-                                <label class="block text-xs font-medium text-slate-500 dark:text-[#9db2b9] mb-1.5 ml-1">Telefon 1</label>
-                                <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-[#9db2b9] px-4 py-3 transition-all outline-none" placeholder="+905551112233" type="text" />
-                            </div>
-                            <div class="relative group">
-                                <label class="block text-xs font-medium text-slate-500 dark:text-[#9db2b9] mb-1.5 ml-1">Telefon 2</label>
-                                <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-[#9db2b9] px-4 py-3 transition-all outline-none" placeholder="+905551112233" type="text" />
-                            </div>
-                        </div>
-                    </div>
+            <div class="bg-white dark:bg-[#111618] rounded-xl border border-slate-200 dark:border-[#283539] shadow-2xl overflow-hidden">
+                <div class="p-8 space-y-8">
 
                     <div class="space-y-4">
-                        <div class="flex items-center gap-2 text-primary font-bold uppercase tracking-wider text-sm">
-                            <span class="material-symbols-outlined text-[20px]">alternate_email</span>
-                            E-posta Adresleri
+                        <div class="flex items-center gap-2 font-bold uppercase tracking-wider text-sm">
+                            <span class="material-symbols-outlined text-[20px] text-primary">description</span>
+                            <span class="text-slate-900 dark:text-white">İletişim Açıklaması</span>
                         </div>
+                        <textarea class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-[#9db2b9] px-4 py-3 transition-all outline-none resize-none"
+                                  placeholder="İletişim sayfasında görünecek genel açıklama metnini giriniz..."
+                                  rows="4"
+                                  name="Description">@Model.Description</textarea>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
                         <div class="space-y-4">
-                            <div class="relative group">
-                                <label class="block text-xs font-medium text-slate-500 dark:text-[#9db2b9] mb-1.5 ml-1">E-posta 1</label>
-                                <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-[#9db2b9] px-4 py-3 transition-all outline-none" placeholder="örnek@alanadi.com" type="email" />
+                            <div class="flex items-center gap-2 font-bold uppercase tracking-wider text-sm">
+                                <span class="material-symbols-outlined text-[20px] text-primary">call</span>
+                                <span class="text-slate-900 dark:text-white">Telefon Numaraları</span>
                             </div>
-                            <div class="relative group">
-                                <label class="block text-xs font-medium text-slate-500 dark:text-[#9db2b9] mb-1.5 ml-1">E-posta 2</label>
-                                <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-[#9db2b9] px-4 py-3 transition-all outline-none" placeholder="örnek@alanadi.com" type="email" />
+
+                            <div class="space-y-4">
+                                <div class="relative group">
+                                    <label class="block text-xs font-medium text-slate-500 dark:text-[#9db2b9] mb-1.5 ml-1">Telefon 1</label>
+                                    <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-[#9db2b9] px-4 py-3 transition-all outline-none"
+                                           placeholder="+905551112233"
+                                           type="text"
+                                           name="PhoneNumber"
+                                           value="@Model.PhoneNumber" />
+                                </div>
+
+                                <div class="relative group">
+                                    <label class="block text-xs font-medium text-slate-500 dark:text-[#9db2b9] mb-1.5 ml-1">Telefon 2</label>
+                                    <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-[#9db2b9] px-4 py-3 transition-all outline-none"
+                                           placeholder="+905551112233"
+                                           type="text"
+                                           name="PhoneNumber2"
+                                           value="@Model.PhoneNumber2" />
+                                </div>
                             </div>
                         </div>
+
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-2 font-bold uppercase tracking-wider text-sm">
+                                <span class="material-symbols-outlined text-[20px] text-primary">alternate_email</span>
+                                <span class="text-slate-900 dark:text-white">E-posta Adresleri</span>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="relative group">
+                                    <label class="block text-xs font-medium text-slate-500 dark:text-[#9db2b9] mb-1.5 ml-1">E-posta 1</label>
+                                    <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-[#9db2b9] px-4 py-3 transition-all outline-none"
+                                           placeholder="örnek@alanadi.com"
+                                           type="email"
+                                           name="Email"
+                                           value="@Model.Email" />
+                                </div>
+
+                                <div class="relative group">
+                                    <label class="block text-xs font-medium text-slate-500 dark:text-[#9db2b9] mb-1.5 ml-1">E-posta 2</label>
+                                    <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-[#9db2b9] px-4 py-3 transition-all outline-none"
+                                           placeholder="örnek@alanadi.com"
+                                           type="email"
+                                           name="Email2"
+                                           value="@Model.Email2" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="space-y-4 pt-4">
+                        <div class="flex items-center gap-2 font-bold uppercase tracking-wider text-sm">
+                            <span class="material-symbols-outlined text-[20px] text-primary">location_on</span>
+                            <span class="text-slate-900 dark:text-white">Ofis/Çalışma Adresi</span>
+                        </div>
+
+                        <textarea class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-[#9db2b9] px-4 py-3 transition-all outline-none resize-none"
+                                  placeholder="Tam adresinizi buraya yazabilirsiniz..."
+                                  rows="3"
+                                  name="Address">@Model.Address</textarea>
+                    </div>
+
+                </div>
+
+                <div class="p-8 bg-slate-50/50 dark:bg-[#1c2427] border-t border-slate-200 dark:border-[#283539] flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div class="flex gap-4 w-full md:w-auto">
+                        <button class="flex-1 md:flex-none bg-primary hover:bg-primary/90 text-white px-12 py-3 rounded-lg font-bold flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary/20"
+                                onclick="return confirm('Kaydetmek istediğinizden emin misiniz?')"
+                                type="submit">
+                            <span class="material-symbols-outlined text-[20px]">save</span>
+                            Bilgileri Kaydet
+                        </button>
                     </div>
                 </div>
 
-                <div class="space-y-4 pt-4">
-                    <div class="flex items-center gap-2 text-primary font-bold uppercase tracking-wider text-sm">
-                        <span class="material-symbols-outlined text-[20px]">location_on</span>
-                        Ofis/Çalışma Adresi
-                    </div>
-                    <div>
-                        <textarea class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-[#9db2b9] px-4 py-3 transition-all outline-none resize-none" placeholder="Tam adresinizi buraya yazabilirsiniz..." rows="3"></textarea>
-                    </div>
-                </div>
             </div>
-
-            <div class="p-8 bg-slate-50/50 dark:bg-[#1c2427] border-t border-slate-200 dark:border-[#283539] flex flex-col md:flex-row items-center justify-between gap-4">
-                <div class="flex items-center gap-2 text-slate-600 dark:text-[#9db2b9]">
-                    <span class="material-symbols-outlined text-amber-500">info</span>
-                    <p class="text-sm">Yapılan değişiklikler anında yayına alınacaktır.</p>
-                </div>
-                <div class="flex gap-4 w-full md:w-auto">
-                    <button class="flex-1 md:flex-none px-8 py-3 text-slate-600 dark:text-[#9db2b9] hover:text-slate-900 dark:hover:text-white font-medium transition-all">
-                        Sıfırla
-                    </button>
-                    <button class="flex-1 md:flex-none bg-primary hover:bg-primary/90 text-white px-12 py-3 rounded-lg font-bold flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary/20">
-                        <span class="material-symbols-outlined text-[20px]">save</span>
-                        Bilgileri Kaydet
-                    </button>
-                </div>
-            </div>
-        </div>
+        </form>
     </div>
 </div>

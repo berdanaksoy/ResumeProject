@@ -1,8 +1,13 @@
-﻿@{
+﻿@using System.Collections
+@using System.Linq
+
+@{
     Layout = null;
-    var monthsData = ViewBag.MonthsData as List<object>;
+
+    var monthsData = ViewBag.MonthsData as IEnumerable;
     var maxCount = (int)ViewBag.MaxCount;
 }
+
 <div class="lg:col-span-2 bg-white dark:bg-surface-dark p-6 rounded-xl border border-slate-200 dark:border-slate-800">
     <div class="flex items-center justify-between mb-6">
         <div>
@@ -14,32 +19,42 @@
         </div>
         <div class="text-xs font-bold uppercase text-slate-400">Aylık Görünüm</div>
     </div>
+
     <div class="h-64 flex items-end justify-between space-x-2 pt-4">
-        @if (monthsData != null && monthsData.Any())
+        @if (monthsData != null && monthsData.Cast<object>().Any())
         {
             foreach (var month in monthsData)
             {
-                var monthData = (dynamic)month;
-                var count = (int)monthData.Count;
-                var percentage = maxCount > 0 ? Math.Max(10, (int)((double)count / maxCount * 100)) : 10;
-                var isHighest = count == maxCount && count > 0;
+                dynamic monthData = month;
+
+                int count = (int)monthData.Count;
+                int percentage = maxCount > 0
+                ? Math.Max(10, (int)((double)count / maxCount * 100))
+                : 10;
+
+                bool isHighest = count == maxCount && count > 0;
 
                 <div class="flex-1 flex flex-col items-center group" style="height: 256px;">
                     <div class="w-full relative flex-1 flex flex-col justify-end">
-                        <!-- Arka plan (gri alan) -->
+
+                        <!-- Arka plan -->
                         <div class="absolute inset-0 bg-slate-200/50 dark:bg-slate-700/20 rounded-t-lg"></div>
 
-                        <!-- Renkli bar -->
+                        <!-- Bar -->
                         <div class="relative rounded-t-lg transition-all"
-                             style="height: @(percentage)%; background-color: @(isHighest ? "#13b6ec" : "rgba(19, 182, 236, 0.5)"); min-height: 15px;">
+                             style="height:@(percentage)%; background-color:@(isHighest ? "#13b6ec" : "rgba(19, 182, 236, 0.5)"); min-height:15px;">
                         </div>
 
-                        <!-- Hover'da görünen sayı -->
+                        <!-- Hover sayı -->
                         <div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                             @count
                         </div>
                     </div>
-                    <span class="text-[10px] mt-2 font-medium text-slate-600 dark:text-slate-300">@monthData.MonthName</span>
+
+                    <!-- Ay -->
+                    <span class="text-[10px] mt-2 font-medium text-slate-600 dark:text-slate-300">
+                        @monthData.MonthName
+                    </span>
                 </div>
             }
         }

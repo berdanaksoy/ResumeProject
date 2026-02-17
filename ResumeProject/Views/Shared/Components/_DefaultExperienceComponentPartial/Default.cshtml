@@ -12,7 +12,7 @@
 			<div class="row">
 				<div class="col-lg-4 mb-1 mb-lg-0">
 					<p class="h5 mb-0">@item.Title</p>
-					<p class="opacity-75">@item.Company, @item.WorkDate</p>
+					<p class="opacity-75">@item.Company, @item.StartDate.ToShortDateString() - @item.EndDate?.ToShortDateString()</p>
 				</div>
 				<div class="col-lg-8">
 					<p>@item.Description</p>

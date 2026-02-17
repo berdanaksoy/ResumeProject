@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ResumeProject.Entities.ServiceDescription
+
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
@@ -21,122 +23,26 @@
                     Hizmet Genel Açıklaması
                 </h3>
             </div>
-            <div class="p-6">
-                <div class="space-y-4">
-                    <div class="flex flex-col space-y-2">
-                        <label class="text-sm font-medium text-slate-600 dark:text-[#9db2b9]" for="serviceDescription">Genel Hizmet Tanıtımı</label>
-                        <textarea class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-[#9db2b9] transition-all px-3 py-2" id="serviceDescription" placeholder="Sunduğunuz hizmetlerin kapsamını ve yaklaşımınızı anlatan bir giriş metni giriniz..." rows="4"></textarea>
-                    </div>
-                    <div class="flex justify-end pt-2">
-                        <button class="bg-primary hover:bg-primary/90 text-white px-8 py-2.5 rounded-lg font-semibold flex items-center gap-2 transition-all shadow-lg shadow-primary/20">
-                            <span class="material-symbols-outlined text-[20px]">save</span>
-                            Kaydet
-                        </button>
+            <form method="post" action="/Service/UpdateDescription">
+                <div class="p-6">
+                    <div class="space-y-4">
+                        <div class="flex flex-col space-y-2">
+                            <label class="text-sm font-medium text-slate-600 dark:text-[#9db2b9]" for="serviceDescription">Genel Hizmet Tanıtımı</label>
+                            <textarea class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-[#9db2b9] transition-all px-3 py-2" id="serviceDescription" name="Description" placeholder="Sunduğunuz hizmetlerin kapsamını ve yaklaşımınızı anlatan bir giriş metni giriniz..." rows="4">@Model.Description</textarea>
+                        </div>
+                        <div class="flex justify-end pt-2">
+                            <button type="submit" class="bg-primary hover:bg-primary/90 text-white px-8 py-2.5 rounded-lg font-semibold flex items-center gap-2 transition-all shadow-lg shadow-primary/20" onclick="return confirm('Kaydetmek istediğinizden emin misiniz?')">
+                                <span class="material-symbols-outlined text-[20px]">save</span>
+                                Kaydet
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </section>
 
-        <section class="bg-white dark:bg-[#111618] rounded-xl shadow-lg border border-slate-200 dark:border-[#283539] overflow-hidden">
-            <div class="p-6 border-b border-slate-200 dark:border-[#283539] flex items-center justify-between bg-slate-50/50 dark:bg-[#1c2427]">
-                <h3 class="text-lg font-semibold flex items-center gap-2">
-                    <span class="material-symbols-outlined text-primary">list_alt</span>
-                    Hizmet Listesi
-                </h3>
-                <button class="bg-primary/10 text-primary hover:bg-primary hover:text-white border border-primary/30 px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 transition-all">
-                    <span class="material-symbols-outlined text-[20px]">add</span>
-                    Yeni Hizmet Ekle
-                </button>
-            </div>
-            <div class="p-6">
-                <div class="space-y-6">
-                    <!-- Service Item 1 -->
-                    <div class="p-5 bg-slate-50 dark:bg-[#1c2427] border border-slate-200 dark:border-[#283539] rounded-xl relative group">
-                        <button class="absolute top-4 right-4 p-2 text-slate-400 dark:text-[#9db2b9] hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all" title="Sil">
-                            <span class="material-symbols-outlined">delete</span>
-                        </button>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <div class="space-y-2">
-                                <label class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-[#9db2b9]">Başlık</label>
-                                <input class="w-full bg-white dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2" type="text" value="Web Geliştirme" />
-                            </div>
-                            <div class="space-y-2">
-                                <label class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-[#9db2b9]">İkon Sınıfı</label>
-                                <div class="flex gap-2">
-                                    <div class="flex items-center justify-center w-10 h-10 bg-primary/20 border border-primary/30 rounded text-primary">
-                                        <span class="material-symbols-outlined">code</span>
-                                    </div>
-                                    <input class="w-full bg-white dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2" type="text" value="fa-code" />
-                                </div>
-                            </div>
-                            <div class="md:col-span-2 lg:col-span-3 space-y-2">
-                                <label class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-[#9db2b9]">Kısa Açıklama</label>
-                                <textarea class="w-full bg-white dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2" rows="2">Modern ve performans odaklı web uygulamaları geliştiriyorum.</textarea>
-                            </div>
-                        </div>
-                    </div>
+        @await Component.InvokeAsync("AdminServiceList")
 
-                    <!-- Service Item 2 -->
-                    <div class="p-5 bg-slate-50 dark:bg-[#1c2427] border border-slate-200 dark:border-[#283539] rounded-xl relative group">
-                        <button class="absolute top-4 right-4 p-2 text-slate-400 dark:text-[#9db2b9] hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all" title="Sil">
-                            <span class="material-symbols-outlined">delete</span>
-                        </button>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <div class="space-y-2">
-                                <label class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-[#9db2b9]">Başlık</label>
-                                <input class="w-full bg-white dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2" type="text" value="UI/UX Tasarım" />
-                            </div>
-                            <div class="space-y-2">
-                                <label class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-[#9db2b9]">İkon Sınıfı</label>
-                                <div class="flex gap-2">
-                                    <div class="flex items-center justify-center w-10 h-10 bg-primary/20 border border-primary/30 rounded text-primary">
-                                        <span class="material-symbols-outlined">palette</span>
-                                    </div>
-                                    <input class="w-full bg-white dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2" type="text" value="fa-palette" />
-                                </div>
-                            </div>
-                            <div class="md:col-span-2 lg:col-span-3 space-y-2">
-                                <label class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-[#9db2b9]">Kısa Açıklama</label>
-                                <textarea class="w-full bg-white dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2" rows="2">Kullanıcı deneyimi ve görsel tasarım prensiplerine uygun arayüzler tasarlıyorum.</textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Service Item 3 -->
-                    <div class="p-5 bg-slate-50 dark:bg-[#1c2427] border border-slate-200 dark:border-[#283539] rounded-xl relative group">
-                        <button class="absolute top-4 right-4 p-2 text-slate-400 dark:text-[#9db2b9] hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all" title="Sil">
-                            <span class="material-symbols-outlined">delete</span>
-                        </button>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <div class="space-y-2">
-                                <label class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-[#9db2b9]">Başlık</label>
-                                <input class="w-full bg-white dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2" type="text" value="API Geliştirme" />
-                            </div>
-                            <div class="space-y-2">
-                                <label class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-[#9db2b9]">İkon Sınıfı</label>
-                                <div class="flex gap-2">
-                                    <div class="flex items-center justify-center w-10 h-10 bg-primary/20 border border-primary/30 rounded text-primary">
-                                        <span class="material-symbols-outlined">api</span>
-                                    </div>
-                                    <input class="w-full bg-white dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2" type="text" value="fa-link" />
-                                </div>
-                            </div>
-                            <div class="md:col-span-2 lg:col-span-3 space-y-2">
-                                <label class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-[#9db2b9]">Kısa Açıklama</label>
-                                <textarea class="w-full bg-white dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 px-3 py-2" rows="2">Güvenli, ölçeklenebilir ve dokümante edilmiş RESTful API servisleri sunuyorum.</textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 mt-6 border-t border-slate-200 dark:border-[#283539]">
-                    <button class="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white px-10 py-2.5 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary/20">
-                        <span class="material-symbols-outlined text-[20px]">save</span>
-                        Değişiklikleri Kaydet
-                    </button>
-                </div>
-            </div>
-        </section>
     </div>
 
     <!-- System Notification Simulator -->

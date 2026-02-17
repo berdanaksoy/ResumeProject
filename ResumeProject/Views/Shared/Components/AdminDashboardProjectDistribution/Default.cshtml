@@ -1,46 +1,131 @@
-﻿
+﻿@model IEnumerable<dynamic>
+
 @{
     Layout = null;
+
+    // güvenli liste
+    var items = (Model ?? Enumerable.Empty<dynamic>()).ToList();
+
+    // toplam
+    int total = 0;
+    foreach (var x in items)
+    {
+        // Count null gelirse 0 say
+        try { total += (int)x.Count; } catch { }
+    }
+
+    // Legend için Tailwind dot renkleri
+    var dotClasses = new[]
+    {
+        "bg-primary","bg-blue-500","bg-indigo-500","bg-emerald-500","bg-rose-500",
+        "bg-amber-500","bg-cyan-500","bg-purple-500","bg-lime-500","bg-teal-500"
+    };
+
+    // Donut için HEX renkler (inline style şart)
+    var hexColors = new[]
+    {
+        "#0d9488","#0ea5e9","#6366f1","#10b981","#f43f5e",
+        "#f59e0b","#06b6d4","#a855f7","#84cc16","#14b8a6"
+    };
+
+    string conic = "conic-gradient(#e2e8f0 0% 100%)"; // boş durum
+    if (total > 0 && items.Count > 0)
+    {
+        double start = 0;
+        var parts = new List<string>();
+
+        for (int i = 0; i < items.Count; i++)
+        {
+            var item = items[i];
+
+            string category = "";
+            int count = 0;
+
+            try { category = (string)item.Category; } catch { category = item.Category?.ToString() ?? ""; }
+            try { count = (int)item.Count; } catch { count = 0; }
+
+            var pct = (count * 100.0) / total;
+            var end = start + pct;
+
+            var color = hexColors[i % hexColors.Length];
+            parts.Add($"{color} {start:0.##}% {end:0.##}%");
+
+            start = end;
+        }
+
+        // yuvarlama farkı varsa son dilimi 100%'e kadar uzat
+        if (parts.Count > 0 && start < 100)
+        {
+            var lastColor = hexColors[(items.Count - 1) % hexColors.Length];
+            // son parçayı "lastColor a% b%" formatında tekrar yazalım
+            // (en temizi)
+            double lastStart = 0;
+            for (int i = 0; i < items.Count - 1; i++)
+            {
+                int c = 0; try { c = (int)items[i].Count; } catch { c = 0; }
+                lastStart += (c * 100.0) / total;
+            }
+            parts[parts.Count - 1] = $"{lastColor} {lastStart:0.##}% 100%";
+        }
+
+        conic = $"conic-gradient({string.Join(", ", parts)})";
+    }
 }
 
 <div class="lg:col-span-1 bg-white dark:bg-surface-dark p-6 rounded-xl border border-slate-200 dark:border-slate-800">
     <div class="flex items-center justify-between mb-6">
         <h2 class="text-lg font-bold flex items-center">
             <span class="material-symbols-outlined mr-2 text-primary">pie_chart</span>
-            Proje Dağılımı
+            Aktif Proje Dağılımı
         </h2>
         <a class="text-xs font-bold text-primary hover:underline" href="/Portfolio/Index">Düzenle</a>
     </div>
+
     <div class="flex flex-col items-center">
         <div class="relative w-40 h-40 rounded-full border-8 border-slate-100 dark:border-slate-800 flex items-center justify-center">
-            <div class="absolute inset-0 rounded-full" style="background: conic-gradient(#0d9488 0% 45%, #0ea5e9 45% 75%, #6366f1 75% 100%);"></div>
+            <div class="absolute inset-0 rounded-full" style="background: @conic;"></div>
+
             <div class="absolute inset-2 bg-white dark:bg-surface-dark rounded-full flex flex-col items-center justify-center">
-                <span class="text-xl font-bold">21</span>
+                <span class="text-xl font-bold">@total</span>
                 <span class="text-[10px] text-slate-500 uppercase">Toplam</span>
             </div>
         </div>
+
         <div class="mt-6 w-full space-y-2">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-2">
-                    <span class="w-3 h-3 rounded-full bg-primary"></span>
-                    <span class="text-xs font-medium">Web</span>
+            @if (total <= 0)
+            {
+                <div class="text-xs text-slate-500 dark:text-slate-400 text-center py-2">
+                    Henüz proje yok.
                 </div>
-                <span class="text-xs font-bold text-slate-500">10 Proje</span>
-            </div>
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-2">
-                    <span class="w-3 h-3 rounded-full bg-blue-500"></span>
-                    <span class="text-xs font-medium">Mobil</span>
-                </div>
-                <span class="text-xs font-bold text-slate-500">6 Proje</span>
-            </div>
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-2">
-                    <span class="w-3 h-3 rounded-full bg-indigo-500"></span>
-                    <span class="text-xs font-medium">Backend</span>
-                </div>
-                <span class="text-xs font-bold text-slate-500">5 Proje</span>
-            </div>
+            }
+            else
+            {
+                @for (int i = 0; i < items.Count; i++)
+                {
+                    var item = items[i];
+
+                    string category = "";
+                    int count = 0;
+
+                    try { category = (string)item.Category; } catch { category = item.Category?.ToString() ?? ""; }
+                    try { count = (int)item.Count; } catch { count = 0; }
+
+                    var pct = total > 0 ? (count * 100.0) / total : 0;
+
+                    var dot = dotClasses[i % dotClasses.Length];
+
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-3 h-3 rounded-full @dot"></span>
+                            <span class="text-xs font-medium">@category</span>
+                        </div>
+                        <span class="text-xs font-bold text-slate-500">
+                            @count Proje
+                            <span class="text-[10px] font-semibold text-slate-400">(%@pct.ToString("0.#"))</span>
+                        </span>
+                    </div>
+                }
+            }
         </div>
     </div>
 </div>

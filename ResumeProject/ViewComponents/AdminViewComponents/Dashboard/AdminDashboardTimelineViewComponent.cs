@@ -14,7 +14,9 @@ namespace ResumeProject.ViewComponents.AdminViewComponents.Dashboard
 
         public IViewComponentResult Invoke()
         {
-            return View(); 
+            var values = _context.Experiences.ToList();
+
+            return View(values); 
         }
     }
 }

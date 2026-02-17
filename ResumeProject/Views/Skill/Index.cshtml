@@ -15,18 +15,10 @@
 <div class="page-scroll">
     <div class="max-w-[1600px] mx-auto p-6 md:p-10">
         <!-- Header Section -->
-        <header class="mb-10 flex items-center justify-between">
+        <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
             <div>
-                <h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-3">
-                    <span class="material-symbols-outlined text-primary text-4xl">psychology</span>
-                    Yetenek Yönetim Paneli
-                </h1>
-                <p class="text-slate-500 dark:text-[#9db2b9] mt-2">Yetenek kısmındaki açıklamayı ve yetenekleri buradan düzenleyebilirsiniz.</p>
-            </div>
-            <div class="hidden md:block">
-                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
-                    <span class="material-symbols-outlined text-primary">admin_panel_settings</span>
-                </div>
+                <h1 class="text-4xl font-bold text-primary mb-2">Yetenek Yönetim Paneli</h1>
+                <p class="text-slate-500 dark:text-slate-400">Yetenek kısmındaki açıklamayı ve yetenekleri buradan düzenleyebilirsiniz.</p>
             </div>
         </header>
 
@@ -59,14 +51,6 @@
             <!-- Bottom Section: Skill List -->
             @await Component.InvokeAsync("AdminSkillList")
 
-        </div>
-
-        <!-- System Notification Simulator (Static for UI design) -->
-        <div class="fixed bottom-8 right-8 pointer-events-none">
-            <div class="bg-slate-900 dark:bg-primary border border-slate-800 dark:border-primary/30 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-4 opacity-0">
-                <span class="material-symbols-outlined text-green-400 dark:text-white">check_circle</span>
-                <span class="font-medium text-sm">Değişiklikler başarıyla kaydedildi.</span>
-            </div>
         </div>
     </div>
 </div>

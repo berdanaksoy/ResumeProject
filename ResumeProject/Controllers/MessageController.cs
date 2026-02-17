@@ -15,7 +15,7 @@ namespace ResumeProject.Controllers
 
         public IActionResult Index()
         {
-            var values=_context.Messages.ToList();
+            var values = _context.Messages.ToList();
 
             return View(values);
         }
@@ -35,6 +35,17 @@ namespace ResumeProject.Controllers
         {
             var message = _context.Messages.Find(id);
             _context.Messages.Remove(message);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult SendMessage(Message message)
+        {
+            message.SendDate = DateTime.Now;
+            message.IsRead = false;
+            _context.Messages.Add(message);
             _context.SaveChanges();
 
             return RedirectToAction("Index");

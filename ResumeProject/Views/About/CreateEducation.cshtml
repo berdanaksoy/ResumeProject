@@ -58,24 +58,65 @@
                 </div>
 
                 <!-- Date Inputs Row -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-2 gap-4">
+
                     <!-- Start Date -->
-                    <div data-purpose="form-group">
-                        <label class="block text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-[#9db2b9] mb-2 px-1" for="start_date">
-                            BAŞLANGIÇ TARİHİ
+                    <div class="relative">
+                        <label for="start_date" class="block text-sm font-bold mb-2">
+                            Başlangıç Tarihi <span class="text-red-500">*</span>
                         </label>
-                        <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" id="start_date" name="EducationStartDate" required="" type="date" />
+
+                        <input type="date"
+                               id="start_date"
+                               name="EducationStartDate"
+                               required
+                               class="w-full px-3 py-2 pr-10 text-sm rounded-lg border border-slate-200 dark:border-[#3b4d54]
+                      bg-white dark:bg-[#1c2427]
+                      focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all
+                      dark:[color-scheme:dark]
+                      [&::-webkit-calendar-picker-indicator]:opacity-0
+                      [&::-webkit-calendar-picker-indicator]:absolute
+                      [&::-webkit-calendar-picker-indicator]:right-3
+                      [&::-webkit-calendar-picker-indicator]:w-5
+                      [&::-webkit-calendar-picker-indicator]:h-5
+                      [&::-webkit-calendar-picker-indicator]:cursor-pointer" />
+
+                        <span class="material-symbols-outlined absolute right-3 top-[43px] text-[20px] text-slate-500 dark:text-white pointer-events-none">
+                            calendar_month
+                        </span>
                     </div>
 
                     <!-- End Date -->
-                    <div data-purpose="form-group">
-                        <label class="block text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-[#9db2b9] mb-2 px-1" for="end_date">
-                            BİTİŞ TARİHİ
+                    <div class="relative">
+                        <label for="end_date" class="block text-sm font-bold mb-2">
+                            Bitiş Tarihi
                         </label>
-                        <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" id="end_date" name="EducationEndDate" type="date" />
-                        <p class="mt-2 text-[10px] text-slate-500 dark:text-[#9db2b9] italic px-1">* Halen devam ediyorsa boş bırakabilirsiniz.</p>
+
+                        <input type="date"
+                               id="end_date"
+                               name="EducationEndDate"
+                               class="w-full px-3 py-2 pr-10 text-sm rounded-lg border border-slate-200 dark:border-[#3b4d54]
+                      bg-white dark:bg-[#1c2427]
+                      focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all
+                      dark:[color-scheme:dark]
+                      [&::-webkit-calendar-picker-indicator]:opacity-0
+                      [&::-webkit-calendar-picker-indicator]:absolute
+                      [&::-webkit-calendar-picker-indicator]:right-3
+                      [&::-webkit-calendar-picker-indicator]:w-5
+                      [&::-webkit-calendar-picker-indicator]:h-5
+                      [&::-webkit-calendar-picker-indicator]:cursor-pointer" />
+
+                        <span class="material-symbols-outlined absolute right-3 top-[43px] text-[20px] text-slate-500 dark:text-white pointer-events-none">
+                            calendar_month
+                        </span>
+
+                        <p class="mt-2 text-xs text-slate-500 dark:text-[#9db2b9]">
+                            * Halen devam ediyorsa tahmini bitiş tarihini yazınız.
+                        </p>
                     </div>
+
                 </div>
+
 
                 <!-- Action Footer -->
                 <div class="pt-4 flex justify-end border-t border-slate-200 dark:border-[#283539] mt-4">
@@ -88,12 +129,5 @@
             <!-- END: FormBody -->
         </section>
         <!-- END: FormCard -->
-        <!-- Footer Decoration -->
-        <div class="mt-8 text-center">
-            <p class="text-slate-500 dark:text-[#9db2b9] text-xs font-medium tracking-wide">
-                © 2024 Developer Portfolio Admin Dashboard
-            </p>
-        </div>
-    </div>
     <!-- END: MainContainer -->
 </div>

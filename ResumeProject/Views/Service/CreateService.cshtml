@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Servis Ekle";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<style>
+    .page-scroll {
+        height: calc(100vh - 64px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-bottom: 32px;
+    }
+</style>
+
+<div class="page-scroll">
+    <!-- BEGIN: MainContainer -->
+    <div class="w-full max-w-2xl mx-auto flex flex-col items-center gap-8 py-12 px-6" data-purpose="admin-content-wrapper">
+        <!-- BEGIN: ServiceAddCard -->
+        <section class="w-full bg-white dark:bg-[#111618] rounded-2xl p-8 border border-slate-200 dark:border-[#283539] shadow-2xl" data-purpose="add-service-form-card">
+            <!-- BEGIN: CardHeader -->
+            <header class="flex items-center justify-between border-b border-slate-200 dark:border-[#283539] pb-6 mb-8" data-purpose="card-header">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined text-3xl">settings_suggest</span>
+                    </div>
+                    <h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Servis Ekle</h1>
+                </div>
+                <a class="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 dark:bg-[#1c2427] border border-slate-200 dark:border-[#283539] text-sm text-slate-700 dark:text-[#9db2b9] hover:bg-slate-200 dark:hover:bg-[#283539] transition-colors" type="button" href="/Service/Index">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span>
+                    Geri Dön
+                </a>
+            </header>
+            <!-- END: CardHeader -->
+            <!-- BEGIN: FormBody -->
+            <form asp-controller="Service" asp-action="CreateService" method="post" class="flex flex-col gap-6">
+                <!-- Field: Başlık -->
+                <div class="flex flex-col gap-3">
+                    <label class="text-sm font-bold text-slate-900 dark:text-white" for="service-title">Başlık</label>
+                    <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-xl py-3 px-4 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-[#9db2b9] focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" id="service-title" placeholder="Servis başlığını giriniz..." type="text" name="Title" />
+                </div>
+
+                <!-- Field: Açıklama -->
+                <div class="flex flex-col gap-3">
+                    <label class="text-sm font-bold text-slate-900 dark:text-white" for="service-description">Açıklama</label>
+                    <textarea class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-xl py-3 px-4 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-[#9db2b9] focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all resize-none" id="service-description" placeholder="Servis içeriği veya sunduğunuz hizmet hakkında kısa bilgi..." rows="4" name="Description"></textarea>
+                </div>
+
+                <!-- Field: İkon Sınıfı -->
+                <div class="flex flex-col gap-3">
+                    <label class="text-sm font-bold text-slate-900 dark:text-white" for="icon-class">İkon Sınıfı</label>
+                    <div class="relative">
+                        <input class="w-full bg-slate-50 dark:bg-[#1d2a33] border border-slate-200 dark:border-[#283539] rounded-xl py-3 px-4 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-[#9db2b9] focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" id="icon-class" placeholder="fa-solid fa-code" type="text" name="IconClass" />
+                        <span class="absolute right-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400 dark:text-[#9db2b9] text-xl">token</span>
+                    </div>
+                    <p class="text-xs text-slate-500 dark:text-[#9db2b9] italic mt-1">* FontAwesome veya benzeri kütüphane sınıflarını kullanabilirsiniz.</p>
+                </div>
+
+                <!-- Form Footer / Submit Button -->
+                <div class="flex justify-end pt-4 mt-4 border-t border-slate-200 dark:border-[#283539]">
+                    <button class="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-10 rounded-xl flex items-center gap-2 transition-all shadow-lg shadow-primary/20" type="submit">
+                        <span class="material-symbols-outlined font-bold">check</span>
+                        <span>Kaydet</span>
+                    </button>
+                </div>
+            </form>
+            <!-- END: FormBody -->
+        </section>
+        <!-- END: ServiceAddCard -->
+    </div>
+    <!-- END: MainContainer -->
+</div>

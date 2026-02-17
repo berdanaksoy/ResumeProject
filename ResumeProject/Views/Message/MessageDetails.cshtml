@@ -58,7 +58,8 @@
                     <div class="space-y-2">
                         <label class="text-xs font-bold text-slate-500 dark:text-[#9db2b9] uppercase tracking-widest">Gönderen</label>
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-teal flex items-center justify-center font-bold text-white">
+                                @Model.Fullname.Substring(0, 2).ToUpper()
                             </div>
                             <p class="text-lg font-semibold text-slate-900 dark:text-white">@Model.Fullname</p>
                         </div>
@@ -114,11 +115,6 @@
             </div>
         </section>
         <!-- END: MessageDetailCard -->
-        <!-- BEGIN: Footer -->
-        <footer class="mt-8 text-center" data-purpose="admin-footer">
-            <p class="text-slate-500 dark:text-[#9db2b9] text-xs">Developer Portfolio Admin Dashboard © 2023</p>
-        </footer>
-        <!-- END: Footer -->
     </div>
     <!-- END: MainContainer -->
 </div>
