@@ -179,7 +179,16 @@ ResumeProject’e katkılarınızı memnuniyetle karşılıyoruz!
 
 ### Nasıl Katkı Sağlanır
 
-1. Repository’yi fork edin
-2. Yeni bir branch oluşturun
-   ```bash
-   git checkout -b feature/amazing-feature
+Fork alın
+
+Yeni branch oluşturun
+
+Geliştirme yapın
+
+Test edin
+
+Commit atın
+
+Push edin
+
+Pull Request açın
