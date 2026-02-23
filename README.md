@@ -91,10 +91,6 @@ Yönetici için stratejik karar alma sürecini destekleyen; Chart.js grafik ente
 <summary><strong>📸 Diğer Admin Paneli Modüllerini İncelemek İçin Tıklayın</strong></summary>
 <br>
 
-| Mesaj Kutusu & İletişim | Proje Yönetimi |
-| :---: | :---: |
-| <img src="https://github.com/user-attachments/assets/2a06229c-de35-4c42-9aae-bf74e0030e09" width="100%"> | <img src="https://github.com/user-attachments/assets/c58cb8b8-6067-4839-847e-ebb30117be42" width="100%"> |
-
 **Detaylı Sistem Modülleri:**
 <img width="100%" src="https://github.com/user-attachments/assets/145d63ea-ba08-4b09-a652-c05a637c90f1" />
 <img width="100%" rc="https://github.com/user-attachments/assets/0e2cd651-790e-4f8e-a684-db9cf84d7e10" />
