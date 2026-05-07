@@ -93,13 +93,21 @@ Yönetici için stratejik karar alma sürecini destekleyen; Chart.js grafik ente
 
 **Detaylı Sistem Modülleri:**
 <img width="100%" src="https://github.com/user-attachments/assets/145d63ea-ba08-4b09-a652-c05a637c90f1" />
+<br>
 <img width="100%" rc="https://github.com/user-attachments/assets/0e2cd651-790e-4f8e-a684-db9cf84d7e10" />
+<br>
 <img width="100%" src="https://github.com/user-attachments/assets/51e7b1d5-e029-44fe-bc80-6f665e4c2368" />
+<br>
 <img width="100%" src="https://github.com/user-attachments/assets/52d2af4f-9797-443b-be1a-3475c7fff48d" />
+<br>
 <img width="100%" src="https://github.com/user-attachments/assets/eb3a217e-fd58-4ce5-a39b-0c6a0e3eb339" />
+<br>
 <img width="100%" src="https://github.com/user-attachments/assets/1601b0ca-4731-43f5-b9d1-1e8f0a57c320" />
+<br>
 <img width="100%" src="https://github.com/user-attachments/assets/c191c017-76d1-4f7a-a77f-6af411968918" />
+<br>
 <img width="100%" src="https://github.com/user-attachments/assets/2158610c-b113-4144-b56a-8382a352b299" />
+<br>
 <img width="100%" src="https://github.com/user-attachments/assets/42652370-7adb-4e91-acb4-8ef6a7c8772b" />
 
 
