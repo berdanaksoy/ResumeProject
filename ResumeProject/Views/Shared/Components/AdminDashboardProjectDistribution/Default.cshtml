@@ -3,14 +3,11 @@
 @{
     Layout = null;
 
-    // güvenli liste
     var items = (Model ?? Enumerable.Empty<dynamic>()).ToList();
 
-    // toplam
     int total = 0;
     foreach (var x in items)
     {
-        // Count null gelirse 0 say
         try { total += (int)x.Count; } catch { }
     }
 
@@ -28,7 +25,7 @@
         "#f59e0b","#06b6d4","#a855f7","#84cc16","#14b8a6"
     };
 
-    string conic = "conic-gradient(#e2e8f0 0% 100%)"; // boş durum
+    string conic = "conic-gradient(#e2e8f0 0% 100%)";
     if (total > 0 && items.Count > 0)
     {
         double start = 0;
@@ -53,12 +50,9 @@
             start = end;
         }
 
-        // yuvarlama farkı varsa son dilimi 100%'e kadar uzat
         if (parts.Count > 0 && start < 100)
         {
             var lastColor = hexColors[(items.Count - 1) % hexColors.Length];
-            // son parçayı "lastColor a% b%" formatında tekrar yazalım
-            // (en temizi)
             double lastStart = 0;
             for (int i = 0; i < items.Count - 1; i++)
             {
